@@ -103,8 +103,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-gradient" data-text="Natanael">Natanael</span>{' '}
-            <span className="text-gradient-accent inline-block transform hover:scale-105 transition-transform" data-text="Contreras">Contreras</span>
+            <span className="text-gradient" data-text="FilmMaker">FilmMaker</span>{' '}
           </motion.h1>
           
           <motion.p 
