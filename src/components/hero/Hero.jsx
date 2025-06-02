@@ -364,7 +364,7 @@ const Hero = () => {
         }}
         whileTap={{ scale: 0.9 }}
         onClick={() => scrollToSection('videos')}
-        aria-label="Desplazarse a la sección de videos"
+        aria-label="Desplazarse a la sección de galería"
       >
         <FaChevronDown 
           className="text-xl sm:text-2xl text-white/90 hover:text-white transition-colors"
@@ -387,12 +387,6 @@ const Hero = () => {
         />
       </motion.button>
 
-      {/* Mock section for scroll demo */}
-      <div id="videos" className="absolute top-full w-full h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-white text-2xl md:text-3xl font-bold text-center px-4">
-          Sección de Videos
-        </div>
-      </div>
     </div>
   )
 }
