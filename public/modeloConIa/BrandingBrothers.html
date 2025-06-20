@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branding Brothers | Portafolio Audiovisual</title>
+    
+    <!-- Chosen Palette: Emerald Green & Gold Sophistication (HBO Max inspired) -->
+    <!-- Application Structure Plan: He diseñado una SPA de una sola página con un flujo narrativo lógico para guiar al usuario. La estructura es: 1) Hero (para impacto inmediato), 2) Servicios (para informar rápidamente sobre las capacidades), 3) Galería (el núcleo, para demostrar la habilidad con filtros interactivos), 4) Estadísticas y Testimonios (para construir prueba social y confianza), y 5) Contacto (para la conversión). Esta arquitectura, navegable a través de una barra superior fija, está optimizada para la usabilidad, llevando al cliente potencial desde el interés inicial hasta la acción de contacto de forma fluida y convincente. -->
+    <!-- Visualization & Content Choices: Report Info: Categorías de video, servicios, testimonios, estadísticas. -> Goal: Organizar, informar, convencer. -> Viz/Presentation Method: Galería con filtros (JS), tarjetas de servicios con iconos (Unicode/HTML), carrusel de testimonios (JS), contadores animados (JS), y un gráfico de dona (Chart.js) para visualizar la distribución de proyectos. -> Interaction: Los usuarios pueden filtrar la galería, navegar testimonios y ver animaciones al desplazarse. -> Justification: Estos methods son interactivos, visualmente atractivos y presentan la información de manera clara y digerible, fomentando la exploración del usuario. -> Library/Method: Vanilla JS, Chart.js. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            /* Light Theme Colors */
+            --bg-primary-light: #fefcfb; /* Soft white */
+            --bg-secondary-light: #f9f6f3; /* Light beige for sections */
+            --text-primary-light: #2d3748; /* Dark blue-gray */
+            --text-secondary-light: #4a5568; /* Medium blue-gray */
+            --accent-main-light: #00BF63; /* Deeper Emerald Green, closer to logo */
+            --accent-dark-light: #00A356; /* Darker Emerald for hover */
+            --accent-alt-light: #B8860B; /* Darker Goldenrod for accents */
+            --border-color-light: rgba(45, 55, 72, 0.1);
+            --header-bg-light: rgba(255, 255, 255, 0.9);
+            --card-bg-light: #ffffff;
+            --button-secondary-bg-light: #edf2f7; /* Light gray for secondary buttons */
+            --button-secondary-text-light: #2d3748;
+            --shadow-color-light: rgba(0, 0, 0, 0.1);
+
+            /* Dark Theme Colors */
+            --bg-primary-dark: #121212; /* Deep dark, almost black */
+            --bg-secondary-dark: #1E1E1E; /* Slightly lighter dark for cards/sections */
+            --text-primary-dark: #EDF2F7; /* Off-white */
+            --text-secondary-dark: #A0AEC0; /* Light blue-gray */
+            --accent-main-dark: #00E676; /* Brighter Emerald Green for dark mode */
+            --accent-dark-dark: #00C767; /* Slightly darker Emerald for hover */
+            --accent-alt-dark: #FFD700; /* Bright Gold */
+            --border-color-dark: rgba(255, 255, 255, 0.1);
+            --header-bg-dark: rgba(18, 18, 18, 0.9);
+            --card-bg-dark: #2A313C; /* Darker blue-gray for cards */
+            --button-secondary-bg-dark: #4A5568; /* Dark gray for secondary buttons */
+            --button-secondary-text-dark: #EDF2F7;
+            --shadow-strong: 0 10px 20px -5px var(--shadow-color-dark);
+            --shadow-medium: 0 5px 15px -3px var(--shadow-color-dark);
+            --shadow-subtle: 0 2px 8px -1px var(--shadow-color-dark);
+            /* Custom cursor for dark mode */
+            --custom-cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="var(--accent-main)"/></svg>') 5 5, auto;
+        }
+
+        /* Applying the variables based on theme */
+        body {
+            --bg-primary: var(--bg-primary-light);
+            --text-primary: var(--text-primary-light);
+            --text-secondary: var(--text-secondary-light);
+            --accent-main: var(--accent-main-light);
+            --accent-dark: var(--accent-dark-light);
+            --accent-alt: var(--accent-alt-light);
+            --border-color: var(--border-color-light);
+            --header-bg: var(--header-bg-light);
+            --card-bg: var(--card-bg-light);
+            --button-secondary-bg: var(--button-secondary-bg-light);
+            --button-secondary-text: var(--button-secondary-text-light);
+            --shadow-strong: 0 10px 20px -5px var(--shadow-color-light);
+            --shadow-medium: 0 5px 15px -3px var(--shadow-color-light);
+            --shadow-subtle: 0 2px 8px -1px var(--shadow-color-light);
+            /* Custom cursor: small filled circle */
+            --custom-cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="var(--accent-main)"/></svg>') 5 5, auto;
+        }
+
+        html.dark body {
+            --bg-primary: var(--bg-primary-dark);
+            --text-primary: var(--text-primary-dark);
+            --text-secondary: var(--text-secondary-dark);
+            --accent-main: var(--accent-main-dark);
+            --accent-dark: var(--accent-dark-dark);
+            --accent-alt: var(--accent-alt-dark);
+            --border-color: var(--border-color-dark);
+            --header-bg: var(--header-bg-dark);
+            --card-bg: var(--card-bg-dark);
+            --button-secondary-bg: var(--button-secondary-bg-dark);
+            --button-secondary-text: var(--button-secondary-text-dark);
+            --shadow-strong: 0 10px 20px -5px var(--shadow-color-dark);
+            --shadow-medium: 0 5px 15px -3px var(--shadow-color-dark);
+            --shadow-subtle: 0 2px 8px -1px var(--shadow-color-dark);
+            /* Custom cursor for dark mode */
+            --custom-cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="var(--accent-main)"/></svg>') 5 5, auto;
+        }
+
+        body {
+            height: 100vh; /* Ensure body takes full viewport height for background effect */
+            margin: 0; /* Remove default body margin */
+            --x: calc(var(--posX, 0) * 1px);
+            --y: calc(var(--posY, 0) * 1px);
+            /* Updated background-image with green tones */
+            background-image: 
+                linear-gradient(115deg, rgb(211 255 215), rgb(0 0 0)), /* Original light green to black */
+                radial-gradient(90% 100% at calc(50% + var(--x)) calc(0% + var(--y)), rgb(200 200 200), rgb(22 45 35)), /* Greenish dark blue */
+                radial-gradient(100% 100% at calc(80% - var(--x)) calc(0% - var(--y)), rgb(250 255 000), rgb(36 70 50)), /* Yellow to dark green */
+                radial-gradient(150% 210% at calc(100% + var(--x)) calc(0% + var(--y)), rgb(20 175 125), rgb(0 100 0)), /* Teal to deep green */
+                radial-gradient(100% 100% at calc(100% - var(--x)) calc(30% - var(--y)), rgb(255 77 0), rgb(0 180 0)), /* Orange to bright green */
+                linear-gradient(60deg, rgb(255 0 0), rgb(120 86 255)); /* Original red to purple */
+            background-blend-mode: overlay, overlay, difference, difference, difference, normal;
+            background-attachment: fixed; /* Keep background fixed during scroll */
+            background-color: transparent; /* Ensure the complex background-image is visible */
+            
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: var(--custom-cursor); /* Custom cursor */
+        }
+        .text-accent-main { color: var(--accent-main); }
+        .bg-accent-main { background-color: var(--accent-main); }
+        .border-accent-main { border-color: var(--accent-main); }
+        .hover\:bg-accent-dark:hover { background-color: var(--accent-dark); }
+        .text-accent-alt { color: var(--accent-alt); }
+        .text-secondary { color: var(--text-secondary); }
+        .bg-card { background-color: var(--card-bg); }
+        .bg-button-secondary { background-color: var(--button-secondary-bg); }
+        .text-button-secondary { color: var(--button-secondary-text); }
+        .border-base { border-color: var(--border-color); }
+        .header-bg { background-color: var(--header-bg); backdrop-filter: blur(8px); }
+        .shadow-strong { box-shadow: var(--shadow-strong); }
+        .shadow-medium { box-shadow: var(--shadow-medium); }
+        .shadow-subtle { box-shadow: var(--shadow-subtle); }
+
+
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--accent-main);
+            transition: width .3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .gallery-item {
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .video-modal, .idea-modal {
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(12px); /* Increased blur */
+        }
+        .modal-content {
+            backdrop-filter: blur(6px); /* Subtle blur for modal content background */
+            background-color: var(--card-bg); /* Use card background for modal */
+            border-radius: 1.5rem; /* More rounded borders for modals */
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 5px 0 var(--accent-main), 0 0 10px 0 var(--accent-main); }
+            50% { box-shadow: 0 0 15px 5px var(--accent-alt), 0 0 20px 8px var(--accent-alt); } /* Changed to accent-alt for glow */
+            100% { box-shadow: 0 0 5px 0 var(--accent-main), 0 0 10px 0 var(--accent-main); }
+        }
+        @keyframes textGradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        .hero-text-animate { animation: slideInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .hero-subtext-animate { animation: slideInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards; animation-delay: 0.2s; }
+        .button-glow-on-hover:hover { animation: pulseGlow 1.5s infinite; }
+
+        .modal-enter-animation { animation: fadeInScale 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .modal-exit-animation { animation: fadeInScale 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse forwards; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-main);
+            border-radius: 10px;
+            border: 1px solid var(--accent-alt); /* Changed border to accent-alt */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-alt);
+        }
+
+        html {
+            scrollbar-color: var(--accent-main) rgba(0, 0, 0, 0.08);
+            scrollbar-width: thin;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+            max-height: 300px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .chart-container {
+                max-width: 500px;
+                height: 350px;
+            }
+        }
+
+        /* Social Menu Specific Styles */
+        .social-menu {
+            position: fixed;
+            bottom: 2.5rem; /* 40px */
+            right: 2.5rem; /* 40px */
+            width: 4.5rem; /* 72px */
+            height: 4.5rem; /* 72px */
+            z-index: 100; /* Ensure it's above other content */
+        }
+
+        .social-menu .btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255,255,255, 0.15);
+            opacity: 0;
+            z-index: -10;
+            cursor: pointer;
+            transition: opacity 1s, z-index 0.3s, transform 1s;
+            transform: translateX(0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem; /* Icon size */
+            color: var(--text-primary);
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
+        }
+
+        html.dark .social-menu .btn {
+            background: rgba(0,0,0, 0.25);
+            color: var(--text-primary);
+        }
+
+        .social-menu .btn:hover {
+            color: var(--accent-main);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .social-menu .btn.trigger {
+            opacity: 1;
+            z-index: 100;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+            background: var(--accent-main);
+            color: white;
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .social-menu .btn.trigger:hover {
+            transform: scale(1.1); /* Slightly more prominent hover */
+            box-shadow: var(--shadow-strong);
+            background: var(--accent-dark);
+        }
+
+        .social-menu .trigger .line {
+            position: absolute;
+            width: 60%;
+            height: 3px; /* Thinner lines */
+            background: white; /* Always white for the trigger lines */
+            border-radius: 3px;
+            transition: background-color 0.3s, height 0.3s, top 0.3s, transform 0.3s;
+        }
+
+        .social-menu .trigger .line::before, 
+        .social-menu .trigger .line::after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 3px; /* Thinner lines */
+            background: white; /* Always white for the trigger lines */
+            border-radius: 3px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .social-menu .trigger .line::before {
+            top: -10px; /* Adjusted spacing */
+            transform-origin: 15% 100%;
+        }
+        .social-menu .trigger .line::after {
+            top: 10px; /* Adjusted spacing */
+            transform-origin: 25% 30%;
+        }
+
+        .social-menu.active .btn-icon {
+            opacity: 1;
+            z-index: 50;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Adjusted transition for smoother reveal */
+        }
+        
+        .social-menu.active .trigger .line {
+            height: 0px;
+            top: 45%;
+            background: transparent; /* Hide line when active */
+        }
+        .social-menu.active .trigger .line::before {
+            transform: rotate(45deg);
+            width: 110%;
+        }
+        .social-menu.active .trigger .line::after {
+            transform: rotate(-45deg);
+            width: 110%;
+        }
+
+        /* Rotater animations for 6 elements */
+        .social-menu .rotater:nth-child(1) { transform: rotate(-30deg); }
+        .social-menu .rotater:nth-child(2) { transform: rotate(30deg); }
+        .social-menu .rotater:nth-child(3) { transform: rotate(90deg); }
+        .social-menu .rotater:nth-child(4) { transform: rotate(150deg); }
+        .social-menu .rotater:nth-child(5) { transform: rotate(210deg); }
+        .social-menu .rotater:nth-child(6) { transform: rotate(270deg); }
+
+        .social-menu.active .rotater:nth-child(1) .btn-icon { transform: translateY(-7rem) rotate(30deg); } /* Adjusted translateY */
+        .social-menu.active .rotater:nth-child(2) .btn-icon { transform: translateY(-7rem) rotate(-30deg); }
+        .social-menu.active .rotater:nth-child(3) .btn-icon { transform: translateY(-7rem) rotate(-90deg); }
+        .social-menu.active .rotater:nth-child(4) .btn-icon { transform: translateY(-7rem) rotate(-150deg); }
+        .social-menu.active .rotater:nth-child(5) .btn-icon { transform: translateY(-7rem) rotate(-210deg); }
+        .social-menu.active .rotater:nth-child(6) .btn-icon { transform: translateY(-7rem) rotate(-270deg); }
+
+        /* Responsive adjustments for social menu */
+        @media (max-width: 768px) {
+            .social-menu {
+                bottom: 1.5rem; /* Smaller margin on mobile */
+                right: 1.5rem;
+                width: 4rem; /* Slightly smaller */
+                height: 4rem;
+            }
+            .social-menu .btn {
+                font-size: 1.5rem;
+            }
+            .social-menu.active .rotater:nth-child(1) .btn-icon { transform: translateY(-6rem) rotate(30deg); } /* Adjusted translateY */
+            .social-menu.active .rotater:nth-child(2) .btn-icon { transform: translateY(-6rem) rotate(-30deg); }
+            .social-menu.active .rotater:nth-child(3) .btn-icon { transform: translateY(-6rem) rotate(-90deg); }
+            .social-menu.active .rotater:nth-child(4) .btn-icon { transform: translateY(-6rem) rotate(-150deg); }
+            .social-menu.active .rotater:nth-child(5) .btn-icon { transform: translateY(-6rem) rotate(-210deg); }
+            .social-menu.active .rotater:nth-child(6) .btn-icon { transform: translateY(-6rem) rotate(-270deg); }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="selection:bg-accent-main selection:text-white">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="header-bg sticky top-0 z-50 shadow-subtle transition-colors duration-300">
+        <nav class="container mx-auto px-8 py-5 flex justify-between items-center">
+            <a href="#" class="text-2xl md:text-3xl font-bold" style="font-family: 'Playfair Display', serif;">Branding <span class="text-accent-main">Brothers</span></a>
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="#servicios" class="nav-link text-text-primary hover:text-accent-main transition-colors duration-300">Servicios</a>
+                <a href="#portafolio" class="nav-link text-text-primary hover:text-accent-main transition-colors duration-300">Portafolio</a>
+                <a href="#testimonios" class="nav-link text-text-primary hover:text-accent-main transition-colors duration-300">Testimonios</a>
+                <a href="#contacto" class="bg-accent-main text-white px-6 py-3 rounded-2xl hover:bg-accent-dark transition-all duration-300 shadow-medium hover:shadow-strong transform hover:scale-105 button-glow-on-hover">Contactar</a>
+                <button id="theme-toggle" class="p-3 rounded-full text-text-primary hover:bg-button-secondary transition-colors duration-300">
+                    <span id="theme-icon">💡</span>
+                </button>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-text-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-8 pb-5 bg-header transition-colors duration-300">
+            <a href="#servicios" class="block py-3 text-text-primary hover:text-accent-main transition-colors duration-300">Servicios</a>
+            <a href="#portafolio" class="block py-3 text-text-primary hover:text-accent-main transition-colors duration-300">Portafolio</a>
+            <a href="#testimonios" class="block py-3 text-text-primary hover:text-accent-main transition-colors duration-300">Testimonios</a>
+            <a href="#contacto" class="block mt-4 text-center bg-accent-main text-white px-6 py-3 rounded-2xl hover:bg-accent-dark transition-colors duration-300">Contactar</a>
+            <button id="mobile-theme-toggle" class="w-full text-left py-3 px-6 mt-4 rounded-2xl text-text-primary hover:bg-button-secondary transition-colors duration-300">
+                <span id="mobile-theme-icon">💡</span> Cambiar Tema
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative h-[75vh] md:h-[85vh] lg:h-[95vh] flex items-center justify-center text-white text-center overflow-hidden">
+            <video autoplay loop muted playsinline class="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover" loading="lazy" preload="none">
+                <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
+            <div class="absolute inset-0 bg-black/60 z-10"></div>
+            <div class="z-20 p-8">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-5 leading-tight hero-text-animate" style="font-family: 'Playfair Display', serif; opacity:0;">Contamos Historias que Conectan</h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto text-gray-200 hero-subtext-animate" style="opacity:0;">Transformamos ideas en experiencias audiovisuales memorables que capturan la esencia de tu marca.</p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="py-24 md:py-32 bg-primary relative z-20 rounded-t-3xl -mt-8 shadow-inner">
+            <div class="container mx-auto px-8 text-center">
+                <div class="animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Nuestros Servicios</h2>
+                    <p class="text-lg text-secondary max-w-3xl mx-auto mb-20">Ofrecemos soluciones creativas y profesionales para llevar tu presencia audiovisual al siguiente nivel.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <div class="bg-card p-10 rounded-2xl shadow-medium hover:shadow-strong transition-shadow duration-300 animate-fade-in border border-base transform hover:translate-y-[-10px]">
+                        <div class="text-6xl mb-4 text-accent-main">🎬</div>
+                        <h3 class="text-2xl font-bold mb-3">Producción de Video</h3>
+                        <p class="text-secondary">Desde la conceptualización hasta la postproducción, creamos videos de alta calidad que comunican tu mensaje efectivamente.</p>
+                    </div>
+                    <div class="bg-card p-10 rounded-2xl shadow-medium hover:shadow-strong transition-shadow duration-300 animate-fade-in border border-base transform hover:translate-y-[-10px]" style="transition-delay: 100ms;">
+                        <div class="text-6xl mb-4 text-accent-main">📸</div>
+                        <h3 class="text-2xl font-bold mb-3">Fotografía Profesional</h3>
+                        <p class="text-secondary">Capturamos imágenes impactantes que reflejan la identidad de tu marca y productos.</p>
+                    </div>
+                    <div class="bg-card p-10 rounded-2xl shadow-medium hover:shadow-strong transition-shadow duration-300 animate-fade-in border border-base transform hover:translate-y-[-10px]" style="transition-delay: 200ms;">
+                        <div class="text-6xl mb-4 text-accent-main">✨</div>
+                        <h3 class="text-2xl font-bold mb-3">Branding y Marca</h3>
+                        <p class="text-secondary">Desarrollamos identidades de marca coherentes y potentes que resuenan con tu audiencia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portafolio" class="py-24 md:py-32 bg-card relative z-20">
+            <div class="container mx-auto px-8">
+                <div class="text-center animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Portafolio Destacado</h2>
+                    <p class="text-lg text-secondary max-w-3xl mx-auto mb-16">Explora una selección de nuestros proyectos más recientes.</p>
+                </div>
+                <div id="filter-buttons" class="flex justify-center flex-wrap gap-5 mb-16 animate-fade-in">
+                    <button class="filter-btn active px-6 py-3 rounded-2xl bg-accent-main text-white hover:bg-accent-dark transition-all duration-300 transform hover:scale-105 shadow-subtle button-glow-on-hover">Todos</button>
+                    <button class="filter-btn px-6 py-3 rounded-2xl bg-button-secondary text-button-secondary hover:bg-gray-300 transition-all duration-300 transform hover:scale-105 shadow-subtle">Gastronomía</button>
+                    <button class="filter-btn px-6 py-3 rounded-2xl bg-button-secondary text-button-secondary hover:bg-gray-300 transition-all duration-300 transform hover:scale-105 shadow-subtle">Moda</button>
+                    <button class="filter-btn px-6 py-3 rounded-2xl bg-button-secondary text-button-secondary hover:bg-gray-300 transition-all duration-300 transform hover:scale-105 shadow-subtle">Empresarial</button>
+                </div>
+                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Gallery items will be injected by JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stats & Testimonials Section -->
+        <section id="testimonios" class="py-24 md:py-32 bg-primary relative z-20 rounded-b-3xl shadow-inner">
+            <div class="container mx-auto px-8">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div class="animate-fade-in">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Resultados y Confianza</h2>
+                        <p class="text-lg text-secondary mb-10">Nuestros clientes son nuestro mayor orgullo. Sus resultados y testimonios hablan por nosotros.</p>
+                        <div class="grid grid-cols-2 gap-10 text-center mb-12">
+                            <div>
+                                <span class="stat-number text-5xl md:text-6xl font-bold text-accent-main" data-target="75">0</span>
+                                <p class="text-secondary mt-2">Clientes Satisfechos</p>
+                            </div>
+                            <div>
+                                <span class="stat-number text-5xl md:text-6xl font-bold text-accent-main" data-target="200">0</span>
+                                <p class="text-secondary mt-2">Proyectos Realizados</p>
+                            </div>
+                        </div>
+                        <div class="chart-container relative h-72 w-full max-w-sm mx-auto shadow-medium rounded-2xl border border-base">
+                            <canvas id="project-types-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-card p-10 rounded-2xl shadow-xl relative overflow-hidden animate-fade-in border border-base">
+                        <div id="testimonial-slider" class="flex">
+                            <!-- Testimonials will be injected by JS -->
+                        </div>
+                        <div class="absolute bottom-8 right-8 flex space-x-4">
+                            <button id="prev-testimonial" class="bg-button-secondary text-button-secondary hover:bg-gray-300 p-3 rounded-full transition-colors transform hover:scale-110">←</button>
+                            <button id="next-testimonial" class="bg-button-secondary text-button-secondary hover:bg-gray-300 p-3 rounded-full transition-colors transform hover:scale-110">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Section -->
+        <section id="contacto" class="py-24 md:py-32 bg-card relative z-20 rounded-b-3xl">
+            <div class="container mx-auto px-8 text-center">
+                <div class="max-w-3xl mx-auto animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5">¿Tienes un proyecto en mente?</h2>
+                    <p class="text-lg text-secondary max-w-3xl mx-auto mb-16">Nos encantaría escucharlo. Contáctanos y empecemos a crear algo increíble juntos.</p>
+                    <form id="contact-form">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                            <input type="text" placeholder="Tu Nombre" class="w-full p-5 rounded-2xl border border-base focus:ring-2 focus:ring-accent-main focus:outline-none bg-transparent text-text-primary" required>
+                            <input type="email" placeholder="Tu Correo Electrónico" class="w-full p-5 rounded-2xl border border-base focus:ring-2 focus:ring-accent-main focus:outline-none bg-transparent text-text-primary" required>
+                        </div>
+                        <textarea placeholder="Cuéntanos sobre tu proyecto..." rows="6" class="w-full p-5 mb-8 rounded-2xl border border-base focus:ring-2 focus:ring-accent-main focus:outline-none bg-transparent text-text-primary" required></textarea>
+                        <button type="submit" class="bg-accent-main text-white font-bold px-12 py-5 rounded-2xl hover:bg-accent-dark transition-transform hover:scale-105 shadow-medium hover:shadow-strong button-glow-on-hover">Enviar Mensaje</button>
+                    </form>
+                    <div id="form-feedback" class="mt-6 text-xl"></div>
+                    
+                    <!-- New button for AI Idea Generator -->
+                    <button id="open-idea-generator-modal" class="mt-10 bg-accent-main text-white font-bold px-10 py-4 rounded-2xl hover:bg-accent-dark transition-transform hover:scale-105 shadow-medium hover:shadow-strong flex items-center justify-center mx-auto button-glow-on-hover">
+                        Generar Ideas de Proyecto ✨
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-card text-secondary py-14 border-t border-base relative z-20">
+        <div class="container mx-auto px-8 text-center">
+            <p>&copy; 2025 Branding Brothers. Todos los derechos reservados.</p>
+            <div class="flex justify-center space-x-8 mt-5">
+                <a href="#" class="hover:text-accent-main transition-colors duration-300 text-2xl">Instagram</a>
+                <a href="#" class="hover:text-accent-main transition-colors duration-300 text-2xl">TikTok</a>
+                <a href="#" class="hover:text-accent-main transition-colors duration-300 text-2xl">YouTube</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-6 video-modal">
+        <div id="video-modal-content" class="bg-black w-full max-w-5xl h-auto aspect-video rounded-3xl shadow-2xl relative modal-content">
+            <button id="close-modal" class="absolute -top-4 -right-4 md:top-0 md:-right-12 text-white text-5xl">&times;</button>
+            <iframe class="w-full h-full rounded-3xl" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- AI Idea Generator Modal -->
+    <div id="idea-generator-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-6 idea-modal">
+        <div class="bg-card w-full max-w-3xl rounded-3xl shadow-2xl relative p-10 border border-base modal-content">
+            <button id="close-idea-modal" class="absolute top-4 right-4 text-3xl text-secondary hover:text-text-primary">&times;</button>
+            <h3 class="text-3xl font-bold mb-6 text-center">Generador de Ideas de Proyecto Audiovisual ✨</h3>
+            <p class="text-secondary mb-6 text-center">Describe brevemente tu negocio o proyecto y nuestra IA te ayudará a generar ideas creativas para tu próximo video.</p>
+            <textarea id="business-description-input" placeholder="Ej: 'Soy un florista que busca mostrar la belleza de mis arreglos', 'Tenemos una startup de tecnología verde que necesita un video explicativo', 'Organizo eventos de bodas y quiero un reel de mi trabajo.'" rows="7" class="w-full p-5 mb-8 rounded-2xl border border-base focus:ring-2 focus:ring-accent-main focus:outline-none bg-transparent text-text-primary"></textarea>
+            <button id="generate-ideas-btn" class="bg-accent-main text-white font-bold px-10 py-4 rounded-2xl hover:bg-accent-dark transition-transform hover:scale-105 shadow-medium hover:shadow-strong w-full flex items-center justify-center button-glow-on-hover">
+                <span id="generate-ideas-text">Generar Ideas</span>
+                <span id="generate-ideas-spinner" class="hidden ml-2 h-6 w-6 border-3 border-white border-t-transparent rounded-full animate-spin"></span>
+            </button>
+            <div id="generated-ideas-output" class="mt-8 p-6 rounded-2xl bg-button-secondary text-button-secondary border border-base max-h-96 overflow-y-auto">
+                <p class="text-center text-secondary">Tus ideas generadas aparecerán aquí.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Circular Social Menu -->
+    <div class="social-menu">
+        <div class="btn trigger">
+            <span class="line"></span>
+        </div>
+        <div class="icons">
+            <div class="rotater">
+                <a href="https://www.tiktok.com/" target="_blank" class="btn btn-icon"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="rotater">
+                <a href="https://www.facebook.com/" target="_blank" class="btn btn-icon"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="rotater">
+                <a href="https://www.instagram.com/" target="_blank" class="btn btn-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="rotater">
+                <a href="https://www.youtube.com/" target="_blank" class="btn btn-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="rotater">
+                <a href="https://wa.me/YOURPHONENUMBER" target="_blank" class="btn btn-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="rotater">
+                <a href="https://www.linkedin.com/" target="_blank" class="btn btn-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Updated galleryData images to reflect new accent colors
+        const galleryData = [
+            { id: 1, category: 'gastronomia', title: 'Sabor en Movimiento', image: 'https://placehold.co/600x400/00BF63/ffffff?text=Gastro+1', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+            { id: 2, category: 'moda', title: 'Estilo Urbano', image: 'https://placehold.co/600x400/B8860B/ffffff?text=Moda+1', videoUrl: 'https://www.youtube.com/embed/tgbNymZ7vqY' },
+            { id: 3, category: 'empresarial', title: 'Innovación Corporativa', image: 'https://placehold.co/600x400/00BF63/ffffff?text=Corp+1', videoUrl: 'https://www.youtube.com/embed/3JZ_D3ELwOQ' },
+            { id: 4, category: 'gastronomia', title: 'Dulce Creación', image: 'https://placehold.co/600x400/B8860B/ffffff?text=Gastro+2', videoUrl: 'https://www.youtube.com/embed/fNFzfwLM72c' },
+            { id: 5, category: 'moda', title: 'Colección Pasarela', image: 'https://placehold.co/600x400/00BF63/ffffff?text=Moda+2', videoUrl: 'https://www.youtube.com/embed/y6120QOlsfU' },
+            { id: 6, category: 'empresarial', title: 'Equipo y Cultura', image: 'https://placehold.co/600x400/B8860B/ffffff?text=Corp+2', videoUrl: 'https://www.youtube.com/embed/5qap5aO4i9A' },
+        ];
+        
+        const testimonialData = [
+            { name: 'Ana Sofía', company: 'Gourmet Inc.', text: 'El equipo de Branding Brothers capturó la esencia de nuestra cocina a la perfección. El video no solo es hermoso, sino que ha incrementado nuestras reservas. ¡Excepcional!', image: 'https://placehold.co/100x100/eeeeee/333333?text=AS' },
+            { name: 'Carlos Vélez', company: 'Moda Urbana', text: 'Su visión creativa y profesionalismo son inigualables. Llevaron nuestra campaña de moda a otro nivel. Totalmente recomendados.', image: 'https://placehold.co/100x100/dddddd/333333?text=CV' },
+            { name: 'Elena Rojas', company: 'Tech Solutions', text: 'Necesitábamos un video corporativo que fuera moderno y humano. Lo que entregaron superó todas nuestras expectativas. Un placer trabajar con ellos.', image: 'https://placehold.co/100x100/cccccc/333333?text=ER' },
+        ];
+
+        const gallery = document.getElementById('gallery');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const modal = document.getElementById('video-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalIframe = modal.querySelector('iframe');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        let projectChart = null; 
+
+        // New elements for Idea Generator
+        const ideaGeneratorModal = document.getElementById('idea-generator-modal');
+        const openIdeaGeneratorModalBtn = document.getElementById('open-idea-generator-modal');
+        const closeIdeaModalBtn = document.getElementById('close-idea-modal');
+        const businessDescriptionInput = document.getElementById('business-description-input');
+        const generateIdeasBtn = document.getElementById('generate-ideas-btn');
+        const generateIdeasText = document.getElementById('generate-ideas-text');
+        const generateIdeasSpinner = document.getElementById('generate-ideas-spinner');
+        const generatedIdeasOutput = document.getElementById('generated-ideas-output');
+
+        // Social Menu elements
+        const socialMenu = document.querySelector('.social-menu');
+        const socialTrigger = socialMenu.querySelector('.trigger');
+
+        // Theme management
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.classList.add(currentTheme);
+        if (currentTheme === 'dark') {
+            themeIcon.textContent = '🌙';
+            mobileThemeIcon.textContent = '🌙';
+        } else {
+            themeIcon.textContent = '💡';
+            mobileThemeIcon.textContent = '💡';
+        }
+
+        function applyThemeColorsToChart(chartInstance, theme) {
+            const rootStyle = getComputedStyle(document.documentElement);
+            const accentMain = rootStyle.getPropertyValue('--accent-main').trim();
+            const accentAlt = rootStyle.getPropertyValue('--accent-alt').trim();
+            const textPrimary = rootStyle.getPropertyValue('--text-primary').trim();
+            const bgPrimary = rootStyle.getPropertyValue('--bg-primary').trim();
+
+            // Use accentMain, accentAlt, textPrimary, and bgPrimary for the slices
+            chartInstance.data.datasets[0].backgroundColor = [accentMain, accentAlt, textPrimary, bgPrimary];
+            chartInstance.options.plugins.legend.labels.color = textPrimary;
+            chartInstance.data.datasets[0].borderColor = bgPrimary; /* Border color to match main background */
+            chartInstance.update();
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('light')) {
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.textContent = '🌙';
+                mobileThemeIcon.textContent = '🌙';
+                if (projectChart) applyThemeColorsToChart(projectChart, 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.textContent = '💡';
+                mobileThemeIcon.textContent = '💡';
+                if (projectChart) applyThemeColorsToChart(projectChart, 'light');
+            }
+            // Update custom cursor color dynamically
+            updateCustomCursor();
+        }
+
+        function updateCustomCursor() {
+            const rootStyle = getComputedStyle(document.documentElement);
+            const currentAccentMain = rootStyle.getPropertyValue('--accent-main').trim();
+            const newCursorSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="${currentAccentMain}"/></svg>`;
+            document.body.style.setProperty('--custom-cursor', `url('data:image/svg+xml;utf8,${encodeURIComponent(newCursorSVG)}') 5 5, auto`);
+        }
+        
+        // Initial cursor update
+        updateCustomCursor();
+
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        function renderGallery(filter = 'all') {
+            gallery.innerHTML = '';
+            const filteredData = filter === 'all' ? galleryData : galleryData.filter(item => item.category === filter);
+            
+            filteredData.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item group overflow-hidden rounded-2xl shadow-medium cursor-pointer animate-fade-in border border-base transform hover:translate-y-[-5px] hover:shadow-strong';
+                galleryItem.style.transitionDelay = `${index * 50}ms`;
+                galleryItem.dataset.videoUrl = item.videoUrl;
+                
+                galleryItem.innerHTML = `
+                    <div class="relative">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 flex items-center justify-center">
+                            <div class="text-white text-center p-4">
+                                <h3 class="text-xl font-bold">${item.title}</h3>
+                                <p class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">Ver video</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                gallery.appendChild(galleryItem);
+            });
+        }
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-accent-main', 'text-white');
+                    btn.classList.add('bg-button-secondary', 'text-button-secondary');
+                });
+                button.classList.add('active', 'bg-accent-main', 'text-white');
+                button.classList.remove('bg-button-secondary', 'text-button-secondary');
+                renderGallery(button.dataset.filter);
+            });
+        });
+
+        gallery.addEventListener('click', (e) => {
+            const item = e.target.closest('.gallery-item');
+            if (item) {
+                modalIframe.src = `${item.dataset.videoUrl}?autoplay=1`;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex', 'modal-enter-animation');
+                modal.classList.remove('modal-exit-animation');
+            }
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('modal-exit-animation');
+            modal.classList.remove('modal-enter-animation');
+            modal.addEventListener('animationend', () => {
+                if (modal.classList.contains('modal-exit-animation')) {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    modalIframe.src = '';
+                }
+            }, { once: true });
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                 closeModalBtn.click();
+            }
+        });
+
+        renderGallery();
+
+        // Mobile Menu
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Testimonials
+        const testimonialSlider = document.getElementById('testimonial-slider');
+        const prevBtn = document.getElementById('prev-testimonial');
+        const nextBtn = document.getElementById('next-testimonial');
+        let currentTestimonial = 0;
+
+        testimonialData.forEach(testimonial => {
+            const card = document.createElement('div');
+            card.className = 'testimonial-card flex-shrink-0 w-full p-6'; 
+            card.innerHTML = `
+                <div class="flex items-center mb-4">
+                    <img src="${testimonial.image}" alt="${testimonial.name}" class="w-16 h-16 rounded-full mr-4 object-cover" loading="lazy">
+                    <div>
+                        <p class="font-bold text-lg">${testimonial.name}</p>
+                        <p class="text-secondary">${testimonial.company}</p>
+                    </div>
+                </div>
+                <p class="text-lg text-secondary italic">"${testimonial.text}"</p>
+            `;
+            testimonialSlider.appendChild(card);
+        });
+
+        function updateTestimonialSlider() {
+            testimonialSlider.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial + 1) % testimonialData.length;
+            updateTestimonialSlider();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial - 1 + testimonialData.length) % testimonialData.length;
+            updateTestimonialSlider();
+        });
+        
+        // Fade-in animation on scroll
+        const animatedElements = document.querySelectorAll('.animate-fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedElements.forEach(el => observer.observe(el));
+        
+        // Stats counter animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = +el.dataset.target;
+                    let current = 0;
+                    const duration = 1000; 
+                    const startTime = performance.now();
+
+                    const updateCount = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        current = target * progress;
+                        el.innerText = Math.ceil(current);
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            el.innerText = target;
+                        }
+                    };
+                    requestAnimationFrame(updateCount);
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statNumbers.forEach(number => statsObserver.observe(number));
+        
+        // Chart.js Doughnut Chart
+        const chartCtx = document.getElementById('project-types-chart').getContext('2d');
+        projectChart = new Chart(chartCtx, { 
+            type: 'doughnut',
+            data: {
+                labels: ['Branding', 'Gastronomía', 'Moda', 'Corporativo'],
+                datasets: [{
+                    label: 'Tipos de Proyecto',
+                    data: [40, 25, 20, 15],
+                    backgroundColor: [], 
+                    borderColor: [], 
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '', 
+                            font: { family: "'Inter', sans-serif" },
+                            boxWidth: 20,
+                            padding: 20,
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map(function(label, i) {
+                                        const meta = chart.getDatasetMeta(0);
+                                        const dataset = chart.data.datasets[0];
+                                        return {
+                                            text: label,
+                                            fillStyle: dataset.backgroundColor[i],
+                                            strokeStyle: dataset.borderColor[i],
+                                            lineWidth: dataset.borderWidth,
+                                            hidden: !chart.isDatasetVisible(0) || isNaN(meta.data[i].circumference), 
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                const label = tooltipItem.label || '';
+                                const value = tooltipItem.raw || 0;
+                                return `${label}: ${value}%`;
+                            }
+                        }
+                    }
+                },
+                cutout: '70%',
+                animation: {
+                    animateRotate: true,
+                    animateScale: true
+                }
+            }
+        });
+
+        // Apply initial theme colors to chart
+        applyThemeColorsToChart(projectChart, currentTheme);
+        
+        // Contact Form
+        const contactForm = document.getElementById('contact-form');
+        const formFeedback = document.getElementById('form-feedback');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            formFeedback.textContent = '¡Gracias! Tu mensaje ha sido enviado. Nos pondremos en contacto pronto.';
+            formFeedback.className = 'mt-4 text-green-600 dark:text-green-400';
+            contactForm.reset();
+            setTimeout(() => { formFeedback.textContent = ''; }, 5000);
+        });
+
+        // AI Idea Generator Logic
+        openIdeaGeneratorModalBtn.addEventListener('click', () => {
+            ideaGeneratorModal.classList.remove('hidden');
+            ideaGeneratorModal.classList.add('flex', 'modal-enter-animation');
+            ideaGeneratorModal.classList.remove('modal-exit-animation');
+            generatedIdeasOutput.innerHTML = '<p class="text-center text-secondary">Tus ideas generadas aparecerán aquí.</p>'; 
+            businessDescriptionInput.value = ''; 
+        });
+
+        closeIdeaModalBtn.addEventListener('click', () => {
+            ideaGeneratorModal.classList.add('modal-exit-animation');
+            ideaGeneratorModal.classList.remove('modal-enter-animation');
+            ideaGeneratorModal.addEventListener('animationend', () => {
+                if (ideaGeneratorModal.classList.contains('modal-exit-animation')) {
+                    ideaGeneratorModal.classList.add('hidden');
+                    ideaGeneratorModal.classList.remove('flex');
+                }
+            }, { once: true });
+        });
+
+        ideaGeneratorModal.addEventListener('click', (e) => {
+            if (e.target === ideaGeneratorModal) {
+                closeIdeaModalBtn.click();
+            }
+        });
+
+        generateIdeasBtn.addEventListener('click', async () => {
+            const businessDescription = businessDescriptionInput.value.trim();
+            if (!businessDescription) {
+                generatedIdeasOutput.innerHTML = '<p class="text-red-500 text-center">Por favor, describe tu negocio para generar ideas.</p>';
+                return;
+            }
+
+            generateIdeasBtn.disabled = true;
+            generateIdeasText.classList.add('hidden');
+            generateIdeasSpinner.classList.remove('hidden');
+            generatedIdeasOutput.innerHTML = '<p class="text-center text-secondary">Generando ideas, por favor espera...</p>';
+
+            try {
+                let chatHistory = [];
+                const prompt = `Actúa como un experto consultor de marketing audiovisual y branding. Un cliente tiene un negocio o proyecto. Basándose en la siguiente descripción del negocio, genera 3 ideas de proyectos de video innovadoras y atractivas. Para cada idea, incluye un título sugerente, una breve descripción del concepto del video y el tipo de audiencia objetivo.
+
+Descripción del negocio: ${businessDescription}`;
+
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const generatedText = result.candidates[0].content.parts[0].text;
+                    // Format the output for better readability
+                    const formattedIdeas = generatedText.split('\n\n').map(idea => {
+                        const lines = idea.split('\n');
+                        if (lines.length >= 3) {
+                            return `
+                                <div class="mb-4 pb-4 border-b border-base last:border-b-0">
+                                    <h4 class="font-bold text-lg mb-1">${lines[0].replace(/Idea \d+:\s*/, '')}</h4>
+                                    <p>${lines[1].replace('Concepto:', '<strong>Concepto:</strong>')}</p>
+                                    <p>${lines[2].replace('Audiencia Objetivo:', '<strong>Audiencia Objetivo:</strong>')}</p>
+                                </div>
+                            `;
+                        }
+                        return `<p>${idea}</p>`;
+                    }).join('');
+                    generatedIdeasOutput.innerHTML = formattedIdeas;
+                } else {
+                    generatedIdeasOutput.innerHTML = '<p class="text-red-500 text-center">No se pudieron generar ideas. Intenta de nuevo.</p>';
+                }
+
+            } catch (error) {
+                console.error("Error al generar ideas:", error);
+                generatedIdeasOutput.innerHTML = '<p class="text-red-500 text-center">Ocurrió un error. Por favor, revisa tu conexión e inténtalo de nuevo.</p>';
+            } finally {
+                generateIdeasBtn.disabled = false;
+                generateIdeasText.classList.remove('hidden');
+                generateIdeasSpinner.classList.add('hidden');
+            }
+        });
+
+        // Social menu toggle logic
+        socialTrigger.addEventListener('click', () => {
+            socialMenu.classList.toggle('active');
+        });
+
+        // Pointermove for custom background
+        document.body.addEventListener("pointermove", (e)=>{
+            const { currentTarget: el, clientX: x, clientY: y } = e;
+            const { top: t, left: l, width: w, height: h } = el.getBoundingClientRect();
+            el.style.setProperty('--posX', x - l - w / 2);
+            el.style.setProperty('--posY', y - t - h / 2);
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/* VideoGallery Styles */
+.video-gallery-grid {
+  /* Estilos para la cuadrícula de la galería de videos */
+}
+
+.video-item-container {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.video-item-container.item-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.video-thumbnail-wrapper {
+  /* Estilos para el contenedor de la miniatura del video */
+}
+
+.video-play-button {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.video-play-button:hover {
+  transform: scale(1.1);
+  /* Otros estilos de hover si son necesarios */
+}
+
+.video-modal-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.video-modal-overlay.modal-open {
+  opacity: 1;
+}
+
+.video-modal-content {
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.video-modal-content.modal-open {
+  transform: scale(1);
+  opacity: 1;
+}

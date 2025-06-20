@@ -1,0 +1,50 @@
+/* WhatsAppButton Shine Effect */
+.whatsapp-button-container {
+  /* Initial state for entry animation - hidden */
+  transform: scale(0) rotate(-180deg);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease-out;
+  transform-style: preserve-3d; /* Mantener para el efecto 3D con JS */
+}
+
+.whatsapp-button-container.button-visible {
+  /* Final state for entry animation - visible */
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
+}
+
+.whatsapp-button {
+  /* Base styles, transition for tap effect */
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease-in-out;
+}
+
+.whatsapp-button:active {
+  /* Tap effect */
+  transform: scale(0.9);
+}
+
+.whatsapp-shine-effect {
+  opacity: 0;
+  animation: whatsappShine 2s infinite linear;
+  transform-origin: center;
+}
+
+@keyframes whatsappShine {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.whatsapp-tooltip {
+  /* Ya tiene transiciones en línea, se pueden mantener o mover a CSS */
+  /* transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; */
+}

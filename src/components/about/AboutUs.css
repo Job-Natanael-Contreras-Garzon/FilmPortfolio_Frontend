@@ -1,0 +1,113 @@
+/* AboutUs Section Styles */
+.about-us-container,
+.about-image-section,
+.about-content-section,
+.feature-item,
+.cta-button-container {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-out;
+}
+
+/* Base Hidden States */
+.about-us-container-hidden,
+.about-image-section-hidden,
+.about-content-section-hidden,
+.feature-item-hidden,
+.cta-button-container.button-hidden {
+  opacity: 0;
+}
+
+/* Base Visible States */
+.about-us-container-visible,
+.about-image-section-visible,
+.about-content-section-visible,
+.feature-item-visible,
+.cta-button-container.button-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* --- Scroll Direction Specific Animations --- */
+
+/* Container */
+.about-us-container-hidden {
+  transform: translateY(30px); /* Default to down */
+}
+.about-us-container-visible-down {
+  transform: translateY(0);
+}
+.about-us-container-visible-up {
+  transform: translateY(0);
+}
+.about-us-container-hidden.about-us-container-visible-up { /* Initial hidden state when scrolling up */
+  transform: translateY(-30px);
+}
+
+/* Image Section (Left) */
+.about-image-section-hidden {
+  transform: translate(-50px, 50px); /* Default to down */
+}
+.about-image-section-visible-down {
+  transform: translate(0, 0);
+}
+.about-image-section-visible-up {
+  transform: translate(0, 0);
+}
+.about-image-section-hidden.about-image-section-visible-up { /* Initial hidden state when scrolling up */
+  transform: translate(-50px, -50px);
+}
+
+/* Content Section (Right) */
+.about-content-section-hidden {
+  transform: translate(50px, 50px); /* Default to down */
+}
+.about-content-section-visible-down {
+  transform: translate(0, 0);
+}
+.about-content-section-visible-up {
+  transform: translate(0, 0);
+}
+.about-content-section-hidden.about-content-section-visible-up { /* Initial hidden state when scrolling up */
+  transform: translate(50px, -50px);
+}
+
+/* Feature Items */
+.feature-item-hidden {
+  /* Default to down */
+  transform: translateY(20px);
+}
+.feature-item-hidden.feature-item-even {
+  transform: translate(-20px, 20px);
+}
+.feature-item-hidden.feature-item-odd {
+  transform: translate(20px, 20px);
+}
+
+.feature-item-visible-down,
+.feature-item-visible-up {
+  transform: translate(0, 0);
+}
+
+/* Adjust hidden state for scroll up */
+.feature-item-hidden.feature-item-visible-up {
+  transform: translateY(-20px);
+}
+.feature-item-hidden.feature-item-visible-up.feature-item-even {
+  transform: translate(-20px, -20px);
+}
+.feature-item-hidden.feature-item-visible-up.feature-item-odd {
+  transform: translate(20px, -20px);
+}
+
+/* CTA Button */
+.cta-button-container.button-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.cta-button-container.button-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: 0.5s;
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Modal from 'react-modal'
+import CustomModal from './CustomModal'
 import ReactPlayer from 'react-player/lazy'
 import { FaTimes } from 'react-icons/fa'
 import PropTypes from 'prop-types'
@@ -24,50 +24,13 @@ const ModalYouTube = ({ isOpen, onRequestClose, video }) => {
 
   // Don't render if no video selected
   if (!video) return null
-  
-  // Custom modal styles
-  const customStyles = {
-    overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.85)',
-      zIndex: 1000,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    content: {
-      position: 'relative',
-      top: 'auto',
-      left: 'auto',
-      right: 'auto',
-      bottom: 'auto',
-      maxWidth: '90vw',
-      width: '1200px',
-      maxHeight: '90vh',
-      border: 'none',
-      background: 'transparent',
-      overflow: 'hidden',
-      borderRadius: '8px',
-      padding: 0
-    }
-  }
-  
+
   return (
-    <Modal
+    <CustomModal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      style={customStyles}
-      contentLabel={`YouTube Video: ${video.title}`}
-      closeTimeoutMS={300}
     >
       <div className="relative w-full">
-        {/* Close Button */}
-        <button
-          className="absolute -top-10 right-0 text-white hover:text-primary-500 transition-colors bg-transparent border-none z-10"
-          onClick={onRequestClose}
-          aria-label="Cerrar video"
-        >
-          <FaTimes size={24} />
-        </button>
         
         {/* Video Title */}
         <h3 className="text-white font-heading font-semibold text-xl mb-4 pr-8">

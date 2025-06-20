@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import Slider from 'react-slick'
 import { FaQuoteLeft, FaStar } from 'react-icons/fa'
@@ -44,21 +43,21 @@ const testimonialsData = [
     rating: 5,
     avatar: 'https://randomuser.me/api/portraits/men/2.jpg'
   }
-]
+];
 
 const TestimonialCarousel = () => {
-  const controls = useAnimation()
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
-  })
+  });
+  const [isVisible, setIsVisible] = useState(false);
   
   // Animate when section comes into view
   useEffect(() => {
     if (inView) {
-      controls.start('visible')
+      setIsVisible(true);
     }
-  }, [controls, inView])
+  }, [inView]);
   
   // Slider settings
   const settings = {
@@ -81,7 +80,7 @@ const TestimonialCarousel = () => {
         }
       }
     ]
-  }
+  };
   
   // Star rating component
   const renderStars = (rating) => {
@@ -90,19 +89,13 @@ const TestimonialCarousel = () => {
         key={i} 
         className={i < rating ? 'text-yellow-500' : 'text-gray-600'} 
       />
-    ))
-  }
+    ));
+  };
   
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.6 } }
-      }}
-      className="max-w-4xl mx-auto"
+      className={`max-w-4xl mx-auto testimonial-carousel-base ${isVisible ? 'is-visible' : 'is-hidden'}`}
     >
       <Slider {...settings}>
         {testimonialsData.map(testimonial => (
@@ -121,7 +114,7 @@ const TestimonialCarousel = () => {
               <FaQuoteLeft className="text-primary-500 opacity-20 text-5xl mx-auto mb-6" />
               
               {/* Testimonial Text */}
-              <p className="text-gray-300 text-lg mb-6 italic">"{testimonial.testimonial}"</p>
+              <p className="text-gray-300 text-lg mb-6 italic">{testimonial.testimonial}</p>
               
               {/* Rating */}
               <div className="flex justify-center mb-4 space-x-1">
@@ -138,8 +131,8 @@ const TestimonialCarousel = () => {
           </div>
         ))}
       </Slider>
-    </motion.div>
-  )
-}
+    </div>
+  );
+};
 
-export default TestimonialCarousel
+export default TestimonialCarousel;

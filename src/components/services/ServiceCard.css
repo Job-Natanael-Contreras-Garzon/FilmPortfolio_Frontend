@@ -1,0 +1,32 @@
+/* ServiceCard Component Styles */
+.service-card {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.service-card-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.service-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilos para el efecto 3D y hover */
+.service-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Efecto 3D diagonal para cards */
+.service-card {
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px -10px var(--shadow-color);
+}
+
+.service-card:hover {
+  transform: translateY(-15px) translateX(10px) rotateY(5deg) rotateZ(2deg);
+  box-shadow: 0 20px 40px -15px var(--shadow-color);
+}

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, useContext } from 'react'
-import { motion } from 'framer-motion'
+import  { useEffect, useRef, useState, useContext } from 'react'
+
 import Hero from '../components/hero/Hero'
 import VideoGallery from '../components/gallery/VideoGallery'
 import ServiceSection from '../components/services/ServiceSection'
@@ -9,6 +9,7 @@ import AboutUs from '../components/about/AboutUs'
 import ContactSection from '../components/contact/ContactSection'
 import ParticleBackground from '../components/common/ParticleBackground'
 import { ThemeContext } from '../App'
+import './HomePage.css';
 
 const HomePage = () => {
   // Referencias a las secciones para animación
@@ -97,13 +98,7 @@ const HomePage = () => {
     }
   }, [])
 
-  // Función para agregar referencias
-  const addToRefs = (el) => {
-    if (el && !sectionRefs.current.includes(el)) {
-      sectionRefs.current.push(el)
-    }
-  }
-
+  
   return (
     <main className={`${theme === 'dark' ? 'bg-black' : 'bg-gray-50'} relative overflow-hidden transition-colors duration-500`}>
       {/* Fondo de partículas animadas */}
@@ -115,13 +110,10 @@ const HomePage = () => {
       {/* Contenedor para scroll infinito con componentes flotantes */}
       <div className="continuous-scroll-container">
         {/* Galería de Videos */}
-        <motion.section
+        <section
           ref={galleryRef}
           id="videos"
-          className={`continuous-section ${isGalleryVisible ? '' : 'section-hidden'}`}
-          initial={{ opacity: 0, y: 100 }}
-          animate={isGalleryVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className={`continuous-section ${isGalleryVisible ? 'section-visible' : 'section-hidden'}`}
         >
           <div className="container-custom">
             <div className="floating-component p-8">
@@ -131,16 +123,13 @@ const HomePage = () => {
               <VideoGallery />
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Servicios */}
-        <motion.section
+        <section
           ref={servicesRef}
           id="servicios"
-          className={`continuous-section ${isServicesVisible ? '' : 'section-hidden'}`}
-          initial={{ opacity: 0, y: 100 }}
-          animate={isServicesVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className={`continuous-section ${isServicesVisible ? 'section-visible' : 'section-hidden'}`}
         >
           <div className="container-custom">
             <div className="floating-component p-8">
@@ -150,16 +139,13 @@ const HomePage = () => {
               <ServiceSection />
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Testimonios */}
-        <motion.section
+        <section
           ref={testimonialsRef}
           id="testimonios"
-          className={`continuous-section ${isTestimonialsVisible ? '' : 'section-hidden'}`}
-          initial={{ opacity: 0, y: 100 }}
-          animate={isTestimonialsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className={`continuous-section ${isTestimonialsVisible ? 'section-visible' : 'section-hidden'}`}
         >
           <div className="container-custom">
             <div className="floating-component p-8">
@@ -169,16 +155,13 @@ const HomePage = () => {
               <TestimonialCarousel />
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Contadores sociales */}
-        <motion.section
+        <section
           ref={countersRef}
           id="contadores"
-          className={`continuous-section ${isCountersVisible ? '' : 'section-hidden'}`}
-          initial={{ opacity: 0, y: 100 }}
-          animate={isCountersVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className={`continuous-section ${isCountersVisible ? 'section-visible' : 'section-hidden'}`}
         >
           <div className="container-custom">
             <div className="floating-component p-8">
@@ -188,16 +171,13 @@ const HomePage = () => {
               <SocialCounters />
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Sobre Nosotros */}
-        <motion.section
+        <section
           ref={aboutRef}
           id="nosotros"
-          className={`continuous-section ${isAboutVisible ? '' : 'section-hidden'}`}
-          initial={{ opacity: 0, y: 100 }}
-          animate={isAboutVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className={`continuous-section ${isAboutVisible ? 'section-visible' : 'section-hidden'}`}
         >
           <div className="container-custom">
             <div className="floating-component p-8">
@@ -207,16 +187,13 @@ const HomePage = () => {
               <AboutUs />
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Contacto */}
-        <motion.section
+        <section
           ref={contactRef}
           id="contacto"
-          className={`continuous-section ${isContactVisible ? '' : 'section-hidden'}`}
-          initial={{ opacity: 0, y: 100 }}
-          animate={isContactVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className={`continuous-section ${isContactVisible ? 'section-visible' : 'section-hidden'}`}
         >
           <div className="container-custom">
             <div className="floating-component p-8">
@@ -226,7 +203,7 @@ const HomePage = () => {
               <ContactSection />
             </div>
           </div>
-        </motion.section>
+        </section>
       </div>
     </main>
   )

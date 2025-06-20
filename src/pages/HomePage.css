@@ -1,0 +1,33 @@
+/* HomePage Section Styles */
+
+.continuous-scroll-container {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.section-exit {
+  transform: translateY(-100px);
+  opacity: 0;
+}
+.continuous-section {
+  position: relative;
+  background: transparent;
+  padding: 120px 0;
+  margin: 100px 0;
+  z-index: 1;
+  transform: translateY(0);
+  opacity: 1;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out, transform 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67); /* Combined transitions */
+  will-change: opacity, transform; /* Hint for browser optimization */
+}
+
+.section-hidden {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: transform 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67), opacity 0.8s ease; /* Added from index.css */
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

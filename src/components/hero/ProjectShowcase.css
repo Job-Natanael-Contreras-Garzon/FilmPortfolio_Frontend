@@ -1,0 +1,108 @@
+/* Estilos para ProjectShowcase (standalone) */
+.showcase-container {
+  /* Estilos base para el contenedor si son necesarios */
+}
+
+.showcase-bg-image {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.showcase-bg-image.image-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.showcase-bg-image.image-entering {
+  opacity: 1;
+  transform: scale(1);
+  /* La animación de entrada es la misma que la activa para el nuevo elemento */
+}
+
+.showcase-bg-image.image-exiting {
+  opacity: 0;
+  transform: scale(0.95);
+  transition-duration: 1.2s; /* Duración de salida un poco más larga para el efecto */
+}
+
+.showcase-gradient-overlay {
+  /* Podría tener transiciones si el gradiente cambia con el tema dinámicamente */
+  transition: background 0.5s ease;
+}
+
+.showcase-info-container {
+  /* Contenedor para la información */
+}
+
+.showcase-info-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.showcase-info-content.info-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.showcase-info-content.info-exiting {
+  opacity: 0;
+  transform: translateY(-30px); /* Opcional: dirección de salida diferente */
+}
+
+.showcase-category-badge,
+.showcase-title,
+.showcase-description {
+  /* Estilos base si son necesarios, Tailwind ya aplica muchos */
+}
+
+.showcase-navigation {
+  /* Estilos para el contenedor de navegación */
+}
+
+.showcase-nav-button {
+  /* Estilos para los botones de navegación, Tailwind ya aplica muchos */
+}
+
+/* Estilos para Hero Section y sus subcomponentes (si ProjectShowcase se usa dentro de Hero) */
+.project-showcase-container {
+  /* Podría tener estilos base si son necesarios */
+}
+
+.project-showcase-bg {
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.project-showcase-bg.bg-animating-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.project-showcase-bg.bg-animating-out {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.project-showcase-info {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.project-showcase-info.info-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-showcase-badge {
+  transition: transform 0.2s ease-out;
+}
+
+.project-showcase-badge:hover {
+  transform: scale(1.05);
+}
+
+.project-showcase-indicator:hover {
+  /* Ya gestionado por Tailwind, pero se puede añadir más si es necesario */
+}

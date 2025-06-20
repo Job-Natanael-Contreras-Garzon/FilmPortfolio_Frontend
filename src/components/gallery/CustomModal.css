@@ -1,0 +1,51 @@
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.custom-modal-overlay.open {
+  opacity: 1;
+}
+
+.custom-modal-content {
+  position: relative;
+  max-width: 90vw;
+  width: 1200px;
+  max-height: 90vh;
+  background: transparent;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 0;
+  transform: scale(0.9);
+  transition: transform 300ms ease-in-out;
+}
+
+.custom-modal-overlay.open .custom-modal-content {
+  transform: scale(1);
+}
+
+.custom-modal-close-button {
+    position: absolute;
+    top: -40px; /* Ajustado para estar más arriba */
+    right: 0;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1010; /* Asegurar que esté sobre el contenido */
+    transition: color 0.3s ease;
+}
+
+.custom-modal-close-button:hover {
+    color: #ff0000; /* O el color primario que prefieras */
+}

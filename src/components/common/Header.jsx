@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+
 import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa'
+import './Header.css'
 import { ThemeContext } from '../../App'
 
 const Header = () => {
@@ -81,16 +82,11 @@ const Header = () => {
                 aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
                 data-theme-toggle="true"
               >
-                <motion.div
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  key={theme} // Forzar animación al cambiar tema
-                >
+                <div className={`theme-icon-container ${theme === 'dark' ? 'rotate-dark' : 'rotate-light'}`}>
                   {theme === 'dark' ? 
                     <FaSun className="text-yellow-300" /> : 
                     <FaMoon className="text-primary-500" />}
-                </motion.div>
+                </div>
               </button>
             </li>
             <li>
@@ -114,82 +110,65 @@ const Header = () => {
         </button>
         
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div 
-              className={`fixed inset-0 z-40 flex items-center justify-center ${theme === 'dark' ? 'bg-black/95' : 'bg-white/95'}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <nav>
-                <ul className="flex flex-col items-center space-y-6">
-                  {navLinks.map((link) => (
-                    <motion.li 
-                      key={link.name}
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -20, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <a 
-                        href={link.href}
-                        className="text-2xl text-white hover:text-primary-400 transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {link.name}
-                      </a>
-                    </motion.li>
-                  ))}
-                  
-                  {/* Botón de tema en versión móvil */}
-                  <motion.li
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
-                  >
-                    <button
-                      onClick={() => {
-                        toggleTheme()
-                        // Opcional: cerrar menú al cambiar tema
-                        // setIsMobileMenuOpen(false)
-                      }}
-                      className={`flex items-center justify-center w-12 h-12 rounded-full transition-all duration-500 ${theme === 'dark' ? 'bg-primary-500/20 hover:bg-primary-500/30 text-white' : 'bg-primary-500/10 hover:bg-primary-500/20 text-gray-900'}`}
-                      aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
-                    >
-                      <motion.div
-                        initial={{ rotate: 0 }}
-                        animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 0.5, ease: 'easeInOut' }}
-                        key={theme} // Forzar animación al cambiar tema
-                      >
-                        {theme === 'dark' ? 
-                          <FaSun className="text-xl text-yellow-300" /> : 
-                          <FaMoon className="text-xl text-primary-500" />}
-                      </motion.div>
-                    </button>
-                  </motion.li>
-                  <motion.li
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.3, delay: 0.3 }}
+        {isMobileMenuOpen && (
+          <div 
+            className={`mobile-menu-overlay ${isMobileMenuOpen ? 'mobile-menu-open' : ''} ${theme === 'dark' ? 'bg-black/95' : 'bg-white/95'}`}
+          >
+            <nav>
+              <ul className="flex flex-col items-center space-y-6">
+                {navLinks.map((link, index) => (
+                  <li 
+                    key={link.name}
+                    className={`mobile-menu-item ${isMobileMenuOpen ? 'mobile-menu-item-visible' : ''}`}
+                    style={{ transitionDelay: `${index * 0.1}s` }}
                   >
                     <a 
-                      href="#contacto" 
-                      className="btn-primary mt-4"
+                      href={link.href}
+                      className={`text-2xl ${theme === 'dark' ? 'text-white' : 'text-gray-800'} hover:text-primary-400 transition-colors`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      Cotizar Proyecto
+                      {link.name}
                     </a>
-                  </motion.li>
-                </ul>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  </li>
+                ))}
+                
+                {/* Botón de tema en versión móvil */}
+                <li 
+                  className={`mobile-menu-item ${isMobileMenuOpen ? 'mobile-menu-item-visible' : ''}`}
+                  style={{ transitionDelay: `${navLinks.length * 0.1}s` }}
+                >
+                  <button
+                    onClick={() => {
+                      toggleTheme()
+                      // Opcional: cerrar menú al cambiar tema
+                      // setIsMobileMenuOpen(false)
+                    }}
+                    className={`flex items-center justify-center w-12 h-12 rounded-full transition-all duration-500 ${theme === 'dark' ? 'bg-primary-500/20 hover:bg-primary-500/30 text-white' : 'bg-primary-500/10 hover:bg-primary-500/20 text-gray-900'}`}
+                    aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+                  >
+                    <div className={`theme-icon-container ${theme === 'dark' ? 'rotate-dark' : 'rotate-light'}`}>
+                      {theme === 'dark' ? 
+                        <FaSun className="text-xl text-yellow-300" /> : 
+                        <FaMoon className="text-xl text-primary-500" />}
+                    </div>
+                  </button>
+                </li>
+                <li 
+                  className={`mobile-menu-item ${isMobileMenuOpen ? 'mobile-menu-item-visible' : ''}`}
+                  style={{ transitionDelay: `${(navLinks.length + 1) * 0.1}s` }}
+                >
+                  <a 
+                    href="#contacto" 
+                    className="btn-primary mt-4"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Cotizar Proyecto
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   )

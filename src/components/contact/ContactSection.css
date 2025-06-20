@@ -1,0 +1,31 @@
+/* ContactSection Styles */
+.contact-section-container {
+  transition: opacity 0.6s ease-in-out;
+}
+
+.section-hidden {
+  opacity: 0;
+}
+
+.section-visible {
+  opacity: 1;
+}
+
+.contact-info-block,
+.contact-form-block {
+  opacity: 0;
+  transform: translateY(50px);
+  transition-property: opacity, transform;
+  transition-duration: 0.8s;
+  transition-timing-function: ease-out;
+}
+
+.content-hidden {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.content-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,40 +1,30 @@
-import { useEffect } from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { FaWhatsapp, FaInstagram, FaYoutube, FaTiktok } from 'react-icons/fa'
+import './ContactSection.css';
 import ContactForm from './ContactForm'
 
 const ContactSection = () => {
-  const controls = useAnimation()
+  const [isVisible, setIsVisible] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
-  })
+  });
   
-  // Animate when section comes into view
   useEffect(() => {
     if (inView) {
-      controls.start('visible')
+      setIsVisible(true);
     }
-  }, [controls, inView])
+  }, [inView]);
   
   return (
-    <motion.div 
+    <div 
       ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.6 } }
-      }}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+      className={`grid grid-cols-1 lg:grid-cols-2 gap-12 contact-section-container ${isVisible ? 'section-visible' : 'section-hidden'}`}
     >
       {/* Contact Info */}
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
-        }}
+      <div
+        className={`contact-info-block ${isVisible ? 'content-visible' : 'content-hidden'}`}
       >
         <h3 className="heading-md mb-6">Ponte en Contacto</h3>
         <p className="text-gray-300 mb-8">
@@ -94,19 +84,17 @@ const ContactSection = () => {
           <p className="text-gray-400">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
           <p className="text-gray-400">Sábados: 10:00 AM - 2:00 PM</p>
         </div>
-      </motion.div>
+      </div>
       
       {/* Contact Form */}
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.2 } }
-        }}
+      <div
+        className={`contact-form-block ${isVisible ? 'content-visible' : 'content-hidden'}`}
+        style={{ transitionDelay: isVisible ? '0.2s' : '0s' }} // Apply delay only when becoming visible
       >
         <ContactForm />
-      </motion.div>
-    </motion.div>
-  )
-}
+      </div>
+    </div>
+  );
+};
 
-export default ContactSection
+export default ContactSection;

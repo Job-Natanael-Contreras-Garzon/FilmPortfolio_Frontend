@@ -1,0 +1,51 @@
+/* Header Component Styles */
+.theme-icon-container {
+  display: inline-block;
+  transition: transform 0.5s ease-in-out;
+}
+
+.theme-icon-container.rotate-dark {
+  animation: rotateIconDark 0.5s ease-in-out forwards;
+}
+
+.theme-icon-container.rotate-light {
+  animation: rotateIconLight 0.5s ease-in-out forwards;
+}
+
+@keyframes rotateIconDark {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateIconLight {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40; /* Asegúrate de que esté por debajo del botón del menú pero por encima del contenido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none; /* Evita interacciones cuando está oculto */
+}
+
+.mobile-menu-overlay.mobile-menu-open {
+  opacity: 1;
+  pointer-events: auto; /* Permite interacciones cuando está visible */
+}
+
+.mobile-menu-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.mobile-menu-item.mobile-menu-item-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

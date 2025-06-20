@@ -1,12 +1,12 @@
-import { useRef, useEffect, useContext } from 'react'
-import { motion } from 'framer-motion'
-import { ThemeContext } from '../../App'
+import { useRef, useEffect, useContext, useState } from 'react';
+import { ThemeContext } from '../../App';
 
 const ParticleBackground = () => {
-  const { theme } = useContext(ThemeContext)
-  const canvasRef = useRef(null)
-  const particlesRef = useRef([])
-  const animationRef = useRef(null)
+  const { theme } = useContext(ThemeContext);
+  const canvasRef = useRef(null);
+  const particlesRef = useRef([]);
+  const animationRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
   
   // Configuración de partículas según el tema
   const particleConfig = {
@@ -34,123 +34,114 @@ const ParticleBackground = () => {
       speed: { min: 0.05, max: 0.2 },
       glow: false
     }
-  }
+  };
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-    let width = window.innerWidth
-    let height = window.innerHeight
-    
-    // Ajustar tamaño del canvas
-    const handleResize = () => {
-      width = window.innerWidth
-      height = window.innerHeight
-      canvas.width = width
-      canvas.height = height
-    }
-    
-    window.addEventListener('resize', handleResize)
-    handleResize()
+    // Mostrar el canvas después de un breve retraso para la transición de opacidad
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // Pequeño retraso para que la transición CSS se active
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
     
     // Crear partículas
     const createParticles = () => {
-      const config = theme === 'dark' ? particleConfig.dark : particleConfig.light
-      particlesRef.current = []
+      const config = theme === 'dark' ? particleConfig.dark : particleConfig.light;
+      particlesRef.current = [];
       
       for (let i = 0; i < config.count; i++) {
-        const colorIndex = Math.floor(Math.random() * config.color.length)
+        const colorIndex = Math.floor(Math.random() * config.color.length);
         particlesRef.current.push({
           x: Math.random() * width,
           y: Math.random() * height,
           radius: Math.random() * (config.size.max - config.size.min) + config.size.min,
           color: config.color[colorIndex],
-          speedX: (Math.random() - 0.5) * config.speed.max,
-          speedY: (Math.random() - 0.5) * config.speed.max,
+          speedX: (Math.random() - 0.5) * config.speed.max * (Math.random() < 0.5 ? 1 : -1), // Dirección aleatoria
+          speedY: (Math.random() - 0.5) * config.speed.max * (Math.random() < 0.5 ? 1 : -1), // Dirección aleatoria
           glow: config.glow
-        })
+        });
       }
-    }
+    };
+
+    // Ajustar tamaño del canvas
+    const handleResize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      // Recrear partículas en resize para ajustar a nuevas dimensiones si es necesario
+      createParticles(); 
+    };
+    
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Llamada inicial
     
     // Animar partículas
     const animate = () => {
-      ctx.clearRect(0, 0, width, height)
+      if (!canvasRef.current) return; // Asegurarse que el canvas existe
+      ctx.clearRect(0, 0, width, height);
       
       particlesRef.current.forEach(particle => {
         // Dibujar partícula
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2)
-        ctx.fillStyle = particle.color
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
         
         if (particle.glow) {
-          ctx.shadowBlur = 10
-          ctx.shadowColor = particle.color
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = particle.color;
         } else {
-          ctx.shadowBlur = 0
+          ctx.shadowBlur = 0;
         }
         
-        ctx.fill()
+        ctx.fill();
         
         // Mover partícula
-        particle.x += particle.speedX
-        particle.y += particle.speedY
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
         
-        // Rebote en los bordes
-        if (particle.x < 0 || particle.x > width) particle.speedX *= -1
-        if (particle.y < 0 || particle.y > height) particle.speedY *= -1
-      })
+        // Rebote en los bordes con margen para evitar que se atasquen
+        if (particle.x - particle.radius < 0 || particle.x + particle.radius > width) particle.speedX *= -1;
+        if (particle.y - particle.radius < 0 || particle.y + particle.radius > height) particle.speedY *= -1;
+      });
       
-      animationRef.current = requestAnimationFrame(animate)
-    }
+      animationRef.current = requestAnimationFrame(animate);
+    };
     
-    createParticles()
-    animate()
+    createParticles(); // Crear partículas inicialmente
+    if (animationRef.current) cancelAnimationFrame(animationRef.current); // Limpiar animación anterior si existe
+    animate();
     
     // Limpiar al desmontar
     return () => {
-      window.removeEventListener('resize', handleResize)
-      cancelAnimationFrame(animationRef.current)
-    }
-  }, [theme])
-  
-  // Recrear partículas cuando cambia el tema
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    
-    const ctx = canvas.getContext('2d')
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    
-    const config = theme === 'dark' ? particleConfig.dark : particleConfig.light
-    particlesRef.current = []
-    
-    for (let i = 0; i < config.count; i++) {
-      const colorIndex = Math.floor(Math.random() * config.color.length)
-      particlesRef.current.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * (config.size.max - config.size.min) + config.size.min,
-        color: config.color[colorIndex],
-        speedX: (Math.random() - 0.5) * config.speed.max,
-        speedY: (Math.random() - 0.5) * config.speed.max,
-        glow: config.glow
-      })
-    }
-  }, [theme])
+      window.removeEventListener('resize', handleResize);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [theme]); // Se vuelve a ejecutar si cambia el tema para recrear partículas y reiniciar animación
   
   return (
-    <motion.div 
+    <div 
       className="fixed inset-0 z-0 pointer-events-none"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 1.5s ease-in-out'
+      }}
     >
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0"
       />
-    </motion.div>
-  )
-}
+    </div>
+  );
+};
 
-export default ParticleBackground
+export default ParticleBackground;

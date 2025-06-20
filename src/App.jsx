@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { LazyMotion, domAnimation } from 'framer-motion'
+
 import HomePage from './pages/HomePage'
 import CustomCursor from './components/common/CustomCursor'
 import Header from './components/common/Header'
@@ -121,7 +121,7 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <LazyMotion features={domAnimation}>
+      {/* <LazyMotion features={domAnimation}> */}
         <div className={`app ${theme}`}>
           <Helmet>
             <title>Portafolio Audiovisual</title>
@@ -139,7 +139,7 @@ function App() {
           </main>
           <Footer />
         </div>
-      </LazyMotion>
+      {/* </LazyMotion> */}
     </ThemeContext.Provider>
   )
 }
