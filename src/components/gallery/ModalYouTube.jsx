@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import CustomModal from './CustomModal'
 import ReactPlayer from 'react-player/lazy'
-import { FaTimes } from 'react-icons/fa'
 import PropTypes from 'prop-types'
 
 const ModalYouTube = ({ isOpen, onRequestClose, video }) => {
@@ -190,7 +189,7 @@ const ModalYouTube = ({ isOpen, onRequestClose, video }) => {
           <p className="text-gray-300">{video.description}</p>
         </div>
       </div>
-    </Modal>
+    </CustomModal>
   )
 }
 
