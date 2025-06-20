@@ -1,5 +1,6 @@
 import { useRef, useEffect, useContext, useState } from 'react';
 import { useInView } from 'react-intersection-observer'; // Asegurar que esta es la importación utilizada
+import { useTranslation } from 'react-i18next';
 import { FaChevronDown } from 'react-icons/fa';
 
 // Importar ThemeContext desde App
@@ -7,29 +8,30 @@ import { ThemeContext } from '../../App';
 
 // ProjectShowcase optimizado para responsive
 const ProjectShowcase = () => {
+  const { t } = useTranslation();
   const [currentProject, setCurrentProject] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false); // Añadido para controlar la animación
   
   const projects = [
     {
       id: 1,
-      title: "Branding - Fusion Restaurant",
-      subtitle: "Identidad para restaurante de alta cocina",
-      category: "Branding",
+      title: t('hero.project1_title'),
+      subtitle: t('hero.project1_subtitle'),
+      category: t('hero.project1_category'),
       image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     },
     {
       id: 2,
-      title: "Video Comercial - Tech Startup",
-      subtitle: "Campaña publicitaria para startup tecnológica",
-      category: "Video",
+      title: t('hero.project2_title'),
+      subtitle: t('hero.project2_subtitle'),
+      category: t('hero.project2_category'),
       image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
     },
     {
       id: 3,
-      title: "Documental - Cultura Local",
-      subtitle: "Preservando tradiciones ancestrales",
-      category: "Documental",
+      title: t('hero.project3_title'),
+      subtitle: t('hero.project3_subtitle'),
+      category: t('hero.project3_category'),
       image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80"
     }
   ];
@@ -118,6 +120,7 @@ const WhatsAppButton = ({ phoneNumber, message }) => {
 };
 
 const Hero = () => {
+  const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
   const containerRef = useRef(null);
   // const controls = useAnimation(); // Ya estaba comentado, se mantiene así
@@ -242,7 +245,7 @@ const Hero = () => {
           className={getEntryClass('mb-6 md:mb-8', 'delay-1')}
         >
           <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Productor audiovisual y creador de contenido enfocado en contar historias con impacto y profundidad.
+            {t('hero.subtitle')}
           </p>
         </div>
 
@@ -254,13 +257,13 @@ const Hero = () => {
             href="#contact"
             className="btn btn-primary btn-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
           >
-            Colaboremos
+            {t('hero.cta_collaborate')}
           </a>
           <a
             href="/portfolio"
             className="btn btn-secondary btn-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
           >
-            Ver Proyectos
+            {t('hero.cta_view_projects')}
           </a>
         </div>
       </div>
@@ -273,7 +276,7 @@ const Hero = () => {
         <FaChevronDown className="text-3xl text-white animate-bounce" />
       </div>
       
-      <WhatsAppButton phoneNumber="+59178504107" message="Hola brandingBrothers, me gustaría hablar sobre un proyecto." />
+      <WhatsAppButton phoneNumber="+59178504107" message={t('hero.whatsapp_message')} />
     </section>
   );
 };

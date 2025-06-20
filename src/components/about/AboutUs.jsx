@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useInView } from 'react-intersection-observer'
 import { FaCheck } from 'react-icons/fa';
 import './AboutUs.css';
 
 const AboutUs = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0.1,
@@ -37,14 +39,7 @@ const AboutUs = () => {
     }
   }, [inView]);
   
-  const features = [
-    'Equipo especializado en cinematografía digital',
-    'Más de 10 años de experiencia en producción audiovisual',
-    'Uso de tecnología 8K y drones de última generación',
-    'Enfoque narrativo en cada proyecto',
-    'Postproducción avanzada con color grading profesional',
-    'Entregas en tiempo récord sin sacrificar calidad'
-  ];
+  const features = t('aboutUs.features', { returnObjects: true });
   
   // Helper to construct dynamic class names for scroll direction
   const getDirectionalClass = (baseClass, visibleState, direction) => {
@@ -69,7 +64,7 @@ const AboutUs = () => {
           />
         </div>
         <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary-500 rounded-full flex items-center justify-center text-white font-heading font-bold text-xl p-4 text-center">
-          10+ Años de Experiencia
+          {t('aboutUs.experience_badge')}
         </div>
       </div>
       
@@ -77,13 +72,9 @@ const AboutUs = () => {
       <div
         className={`about-content-section ${getDirectionalClass('about-content-section', isVisible, scrollDirection)}`}
       >
-        <h2 className="heading-lg mb-6">Sobre Nosotros</h2>
-        <p className="text-gray-300 mb-6 text-lg">
-          Somos un equipo de creadores audiovisuales apasionados por contar historias que conectan. Fundados en 2014, hemos producido contenido para marcas nacionales e internacionales, siempre con un enfoque cinematográfico y narrativo.
-        </p>
-        <p className="text-gray-300 mb-8">
-          Nuestra misión es convertir tu visión en una experiencia visual impactante que resuene con tu audiencia. Ya sea un comercial, documental o contenido para redes sociales, aportamos la misma pasión y calidad a cada proyecto.
-        </p>
+        <h2 className="heading-lg mb-6">{t('aboutUs.title')}</h2>
+        <p className="text-gray-300 mb-6 text-lg">{t('aboutUs.paragraph1')}</p>
+        <p className="text-gray-300 mb-8">{t('aboutUs.paragraph2')}</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           {features.map((feature, index) => (
@@ -105,7 +96,7 @@ const AboutUs = () => {
            style={{ transitionDelay: isVisible ? '0.6s' : '0s' }}
         >
           <a href="#contacto" className="btn-primary">
-            Trabajemos Juntos
+            {t('aboutUs.cta_button')}
           </a>
         </div>
       </div>

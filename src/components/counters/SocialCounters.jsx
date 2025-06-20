@@ -1,54 +1,57 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useInView } from 'react-intersection-observer';
 import { FaYoutube, FaInstagram, FaTiktok, FaFacebookF, FaTwitter } from 'react-icons/fa';
 import AnimatedCounter from './AnimatedCounter';
 import useScrollDirection from '../../hooks/useScrollDirection';
 
 // Datos reales de las redes sociales de Farid Dieck (Junio 2025)
-const socialNetworksData = [
-  {
-    id: 1,
-    platform: 'YouTube',
-    icon: <FaYoutube className="text-4xl text-red-600 social-icon" />,
-    count: 682000, // Valor real de suscriptores
-    label: 'Suscriptores',
-    link: 'https://www.youtube.com/@FaridDieckOficial'
-  },
-  {
-    id: 2,
-    platform: 'Instagram',
-    icon: <FaInstagram className="text-4xl text-pink-500 social-icon" />,
-    count: 921000, // Valor real de seguidores
-    label: 'Seguidores',
-    link: 'https://www.instagram.com/brandingbrothers.bo/'
-  },
-  {
-    id: 3,
-    platform: 'TikTok',
-    icon: <FaTiktok className="text-4xl social-icon" />,
-    count: 12400, // Valor real de seguidores
-    label: 'Seguidores',
-    link: 'https://www.tiktok.com/@brandingbrothers.bo?is_from_webapp=1&sender_device=pc'
-  },
-  {
-    id: 4,
-    platform: 'Facebook',
-    icon: <FaFacebookF className="text-4xl text-blue-500 social-icon" />,
-    count: 47300, // Valor real de seguidores
-    label: 'Seguidores',
-    link: 'https://www.facebook.com/faridieck'
-  },
-  {
-    id: 5,
-    platform: 'Twitter',
-    icon: <FaTwitter className="text-4xl text-blue-400 social-icon" />,
-    count: 31500, // Valor real de seguidores
-    label: 'Seguidores',
-    link: 'https://x.com/faridieck'
-  }
-];
-
 const SocialCounters = () => {
+  const { t } = useTranslation();
+
+  const socialNetworksData = [
+    {
+      id: 1,
+      platform: 'YouTube',
+      icon: <FaYoutube className="text-4xl text-red-600 social-icon" />,
+      count: 682000,
+      label: t('socialCounters.subscribers'),
+      link: 'https://www.youtube.com/@FaridDieckOficial'
+    },
+    {
+      id: 2,
+      platform: 'Instagram',
+      icon: <FaInstagram className="text-4xl text-pink-500 social-icon" />,
+      count: 921000,
+      label: t('socialCounters.followers'),
+      link: 'https://www.instagram.com/brandingbrothers.bo/'
+    },
+    {
+      id: 3,
+      platform: 'TikTok',
+      icon: <FaTiktok className="text-4xl social-icon" />,
+      count: 12400,
+      label: t('socialCounters.followers'),
+      link: 'https://www.tiktok.com/@brandingbrothers.bo?is_from_webapp=1&sender_device=pc'
+    },
+    {
+      id: 4,
+      platform: 'Facebook',
+      icon: <FaFacebookF className="text-4xl text-blue-500 social-icon" />,
+      count: 47300,
+      label: t('socialCounters.followers'),
+      link: 'https://www.facebook.com/faridieck'
+    },
+    {
+      id: 5,
+      platform: 'Twitter',
+      icon: <FaTwitter className="text-4xl text-blue-400 social-icon" />,
+      count: 31500,
+      label: t('socialCounters.followers'),
+      link: 'https://x.com/faridieck'
+    }
+  ];
+
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: false
@@ -125,7 +128,7 @@ const SocialCounters = () => {
                 <AnimatedCounter value={item.count} duration={1000} />
               )}
             </div>
-            <p className="text-sm text-gray-400">{item.label} en {item.platform}</p>
+            <p className="text-sm text-gray-400">{t('socialCounters.label_on_platform', { label: item.label, platform: item.platform })}</p>
           </a>
         </div>
       ))}

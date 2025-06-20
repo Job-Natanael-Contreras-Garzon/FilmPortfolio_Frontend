@@ -35,7 +35,7 @@ const Footer = () => {
   ]
   
   return (
-    <footer className="bg-black pt-16 pb-8">
+    <footer className="bg-black pt-12 pb-6">
       <div className="container-custom">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -103,7 +103,7 @@ const Footer = () => {
         </div>
         
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-800 text-center md:flex md:justify-between md:items-center">
+        <div className="pt-6 border-t border-gray-800 text-center md:flex md:justify-center md:gap-12 md:items-center">
           <p className="text-gray-500 text-sm">
             © {currentYear} BrandingBrothers. Todos los derechos reservados.
           </p>

@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useInView } from 'react-intersection-observer'
 import { FaWhatsapp, FaInstagram, FaYoutube, FaTiktok } from 'react-icons/fa'
 import './ContactSection.css';
-import ContactForm from './ContactForm'
+import ContactForm from './ContactForm';
+import IdeaGeneratorModal from './IdeaGeneratorModal';
+import './IdeaGeneratorModal.css';
 
 const ContactSection = () => {
+  const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0.1,
@@ -26,12 +31,8 @@ const ContactSection = () => {
       <div
         className={`contact-info-block ${isVisible ? 'content-visible' : 'content-hidden'}`}
       >
-        <h3 className="heading-md mb-6">Ponte en Contacto</h3>
-        <p className="text-gray-300 mb-8">
-          ¿Tienes un proyecto en mente? Nos encantaría escuchar tus ideas y
-          convertirlas en realidad. Completa el formulario o contáctanos
-          directamente a través de WhatsApp o nuestras redes sociales.
-        </p>
+        <h3 className="heading-md mb-6">{t('contact.sectionTitle')}</h3>
+        <p className="text-gray-300 mb-8">{t('contact.sectionSubtitle')}</p>
         
         {/* WhatsApp Button */}
         <a
@@ -41,12 +42,20 @@ const ContactSection = () => {
           className="flex items-center bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-full mb-6 transition-colors inline-block"
         >
           <FaWhatsapp className="mr-2 text-xl" />
-          <span>Contactar por WhatsApp</span>
+          <span>{t('contact.whatsappButton')}</span>
         </a>
+
+        {/* AI Idea Generator Button */}
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full mb-6 transition-colors inline-block ml-4"
+        >
+          <span>{t('contact.ideaGeneratorButton')}</span>
+        </button>
         
         {/* Social Media */}
         <div className="mt-8">
-          <h4 className="font-medium text-white mb-4">Síguenos en redes</h4>
+          <h4 className="font-medium text-white mb-4">{t('contact.followUs')}</h4>
           <div className="flex space-x-4">
             <a
               href="https://www.instagram.com/brandingbrothers.bo/" // Replace with your actual Instagram
@@ -80,9 +89,9 @@ const ContactSection = () => {
         
         {/* Business Hours */}
         <div className="mt-8">
-          <h4 className="font-medium text-white mb-4">Horario de Atención</h4>
-          <p className="text-gray-400">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-          <p className="text-gray-400">Sábados: 10:00 AM - 2:00 PM</p>
+          <h4 className="font-medium text-white mb-4">{t('contact.businessHoursTitle')}</h4>
+          <p className="text-gray-400">{t('contact.businessHours_weekdays')}</p>
+          <p className="text-gray-400">{t('contact.businessHours_saturdays')}</p>
         </div>
       </div>
       
@@ -93,6 +102,8 @@ const ContactSection = () => {
       >
         <ContactForm />
       </div>
+
+      <IdeaGeneratorModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };

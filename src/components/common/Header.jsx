@@ -1,14 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa'
-import './Header.css'
-import { ThemeContext } from '../../App'
+import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
+import './Header.css';
+import { ThemeContext } from '../../App';
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { theme, toggleTheme } = useContext(ThemeContext)
+  const { t, i18n } = useTranslation();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   
   // Log para depuración - verificar que el contexto se está recibiendo correctamente
   useEffect(() => {
@@ -34,14 +36,14 @@ const Header = () => {
   
   // Navigation links
   const navLinks = [
-    { name: 'Inicio', href: '/' },
-    { name: 'Portafolio', href: '/portfolio' },
-    { name: 'Videos', href: '#videos' },
-    { name: 'Servicios', href: '#servicios' },
-    { name: 'Testimonios', href: '#testimonios' },
-    { name: 'Nosotros', href: '#nosotros' },
-    { name: 'Contacto', href: '#contacto' }
-  ]
+    { name: t('header.home'), href: '/' },
+    { name: t('header.portfolio'), href: '/portfolio' },
+    { name: t('header.videos'), href: '#videos' },
+    { name: t('header.services'), href: '#servicios' },
+    { name: t('header.testimonials'), href: '#testimonios' },
+    { name: t('header.about'), href: '#nosotros' },
+    { name: t('header.contact'), href: '#contacto' },
+  ];
   
   return (
     <header 
@@ -81,7 +83,7 @@ const Header = () => {
                   toggleTheme()
                 }}
                 className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 ${theme === 'dark' ? 'bg-primary-500/20 hover:bg-primary-500/30 text-white' : 'bg-primary-500/10 hover:bg-primary-500/20 text-gray-900'}`}
-                aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+                aria-label={theme === 'dark' ? t('header.themeToLight') : t('header.themeToDark')}
                 data-theme-toggle="true"
               >
                 <div className={`theme-icon-container ${theme === 'dark' ? 'rotate-dark' : 'rotate-light'}`}>
@@ -96,8 +98,11 @@ const Header = () => {
                 href="#contacto" 
                 className="btn-modern ml-4"
               >
-                Cotizar Proyecto
+                {t('header.quoteProject')}
               </a>
+            </li>
+            <li>
+              <LanguageSwitcher />
             </li>
           </ul>
         </nav>
@@ -106,7 +111,7 @@ const Header = () => {
         <button 
           className="md:hidden relative z-50 text-2xl"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-label={isMobileMenuOpen ? t('header.closeMenu') : t('header.openMenu')}
         >
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
@@ -146,7 +151,7 @@ const Header = () => {
                       // setIsMobileMenuOpen(false)
                     }}
                     className={`flex items-center justify-center w-12 h-12 rounded-full transition-all duration-500 ${theme === 'dark' ? 'bg-primary-500/20 hover:bg-primary-500/30 text-white' : 'bg-primary-500/10 hover:bg-primary-500/20 text-gray-900'}`}
-                    aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+                    aria-label={theme === 'dark' ? t('header.themeToLight') : t('header.themeToDark')}
                   >
                     <div className={`theme-icon-container ${theme === 'dark' ? 'rotate-dark' : 'rotate-light'}`}>
                       {theme === 'dark' ? 
@@ -159,12 +164,18 @@ const Header = () => {
                   className={`mobile-menu-item ${isMobileMenuOpen ? 'mobile-menu-item-visible' : ''}`}
                   style={{ transitionDelay: `${(navLinks.length + 1) * 0.1}s` }}
                 >
+                  <LanguageSwitcher />
+                </li>
+                <li 
+                  className={`mobile-menu-item ${isMobileMenuOpen ? 'mobile-menu-item-visible' : ''}`}
+                  style={{ transitionDelay: `${(navLinks.length + 1) * 0.1}s` }}
+                >
                   <a 
                     href="#contacto" 
                     className="btn-primary mt-4"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Cotizar Proyecto
+                    {t('header.quoteProject')}
                   </a>
                 </li>
               </ul>
@@ -175,5 +186,31 @@ const Header = () => {
     </header>
   )
 }
+
+const LanguageSwitcher = () => {
+  const { i18n } = useTranslation();
+  const { theme } = useContext(ThemeContext);
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'es' ? 'en' : 'es';
+    i18n.changeLanguage(newLang);
+  };
+
+  return (
+    <div className="flex items-center space-x-2">
+        <span className={`text-sm font-bold ${i18n.language === 'es' ? (theme === 'dark' ? 'text-white' : 'text-black') : 'text-gray-500'}`}>ES</span>
+        <button
+          onClick={toggleLanguage}
+          className={`relative w-10 h-5 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'}`}
+          aria-label={`Switch to ${i18n.language === 'es' ? 'English' : 'Español'}`}
+        >
+          <div
+            className={`absolute bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 ${i18n.language === 'en' ? 'translate-x-4' : ''}`}
+          />
+        </button>
+        <span className={`text-sm font-bold ${i18n.language === 'en' ? (theme === 'dark' ? 'text-white' : 'text-black') : 'text-gray-500'}`}>EN</span>
+    </div>
+  );
+};
 
 export default Header

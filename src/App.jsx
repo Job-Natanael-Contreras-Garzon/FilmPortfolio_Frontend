@@ -1,5 +1,6 @@
-import { useState, useEffect, createContext } from 'react'
-import { Helmet } from 'react-helmet-async'
+import { useState, useEffect, createContext } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -12,7 +13,8 @@ import Footer from './components/common/Footer'
 export const ThemeContext = createContext()
 
 function App() {
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
+  const { t } = useTranslation();
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false)
   const [theme, setTheme] = useState('dark') // 'dark' o 'light'
   
@@ -124,11 +126,12 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {/* <LazyMotion features={domAnimation}> */}
+        <Router>
         <div className={`app ${theme}`}>
           <Helmet>
-            <title>Portafolio Audiovisual</title>
-            <meta name="description" content="Portfolio audiovisual con trabajos de alta calidad en video" />
-            <meta name="keywords" content="video, producción, audiovisual, portfolio, cine, edición" />
+            <title>{t('app.title')}</title>
+            <meta name="description" content={t('app.description')} />
+            <meta name="keywords" content={t('app.keywords')} />
             <meta name="author" content="Film Portfolio" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link rel="canonical" href="https://filmportfolio.com" />
@@ -137,15 +140,14 @@ function App() {
           <CustomCursor position={cursorPosition} isHovering={isHovering} theme={theme} />
           <Header theme={theme} toggleTheme={toggleTheme} />
           <main className="scroll-smooth">
-            <Router>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/portfolio" element={<PortfolioPage />} />
-              </Routes>
-            </Router>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/portfolio" element={<PortfolioPage />} />
+            </Routes>
           </main>
           <Footer />
         </div>
+      </Router>
       {/* </LazyMotion> */}
     </ThemeContext.Provider>
   )

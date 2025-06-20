@@ -1,22 +1,15 @@
-import { useState } from 'react';
 import './ClientCard.css';
 
-const ClientCard = ({ client }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
+const ClientCard = ({ project }) => {
   return (
     <div 
-      className="client-card"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="project-card"
+      style={{ backgroundImage: `url(${project.image})` }}
     >
-      <img src={client.logo} alt={`${client.name} logo`} className="client-logo" />
-      {isHovered && (
-        <div className="client-overlay">
-          <p className="client-description">{client.description}</p>
-          <button className="view-more-button">Ver más</button>
-        </div>
-      )}
+      <div className="project-overlay">
+        <h3 className="project-title">{project.title}</h3>
+        <p className="project-subtitle">{project.subtitle}</p>
+      </div>
     </div>
   );
 };

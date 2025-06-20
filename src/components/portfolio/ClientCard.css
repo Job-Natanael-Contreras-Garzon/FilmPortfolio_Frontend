@@ -1,46 +1,48 @@
-.client-card {
+.project-card {
   position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.client-logo {
   width: 100%;
-  height: auto;
-  display: block;
+  aspect-ratio: 4 / 3; /* Ensures consistent size */
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.client-overlay {
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  opacity: 1;
   transition: opacity 0.3s ease;
 }
 
-.client-card:hover .client-overlay {
-  opacity: 1;
+.project-card:hover .project-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.1) 70%);
 }
 
-.client-description {
-  padding: 1rem;
-  text-align: center;
+.project-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
 }
 
-.view-more-button {
-  background-color: #4CAF50; /* Example color */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.project-subtitle {
+  font-size: 1rem;
+  margin: 0.25rem 0 0;
+  font-weight: normal;
 }

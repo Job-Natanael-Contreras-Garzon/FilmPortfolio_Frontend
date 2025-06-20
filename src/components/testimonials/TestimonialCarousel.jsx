@@ -1,42 +1,43 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaStar, FaQuoteLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import './TestimonialCarousel.css';
 
 const TestimonialCarousel = () => {
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
   const slideDirection = useRef('right');
   
-  // Datos para los testimonios con imágenes en línea
   const testimonials = [
     {
       id: 1,
-      name: 'Miguel Ángel Rodríguez',
-      role: 'Director de Marketing',
-      company: 'Global Brands Inc.',
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', // Imagen profesional de Unsplash
-      text: 'El nivel de calidad y profesionalismo en cada proyecto es excepcional. Han superado nuestras expectativas en cada campaña que hemos realizado juntos.',
+      name: t('testimonials.testimonial1_name'),
+      role: t('testimonials.testimonial1_role'),
+      company: t('testimonials.testimonial1_company'),
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      text: t('testimonials.testimonial1_text'),
       stars: 5
     },
     {
       id: 2,
-      name: 'Laura Mendoza',
-      role: 'Productora Ejecutiva',
-      company: 'Creative Films',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', // Imagen profesional de Unsplash
-      text: 'La capacidad para transformar nuestra visión en una narrativa visual impactante ha sido clave para el éxito de nuestros proyectos colaborativos.',
+      name: t('testimonials.testimonial2_name'),
+      role: t('testimonials.testimonial2_role'),
+      company: t('testimonials.testimonial2_company'),
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      text: t('testimonials.testimonial2_text'),
       stars: 5
     },
     {
       id: 3,
-      name: 'Carlos Vega',
-      role: 'CEO',
-      company: 'Innovate Studios',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', // Imagen profesional de Unsplash
-      text: 'Trabajar con este equipo ha sido una experiencia transformadora. Su atención al detalle y compromiso con la excelencia los distingue en la industria.',
+      name: t('testimonials.testimonial3_name'),
+      role: t('testimonials.testimonial3_role'),
+      company: t('testimonials.testimonial3_company'),
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      text: t('testimonials.testimonial3_text'),
       stars: 5
     }
-  ]
+  ];
   
 
   
@@ -89,10 +90,8 @@ const TestimonialCarousel = () => {
     <div className="bg-gray-900 py-16 rounded-lg testimonial-carousel-base">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="heading-lg mb-3">Lo que dicen nuestros clientes</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Testimonios de clientes que han confiado en nosotros para sus proyectos audiovisuales.
-          </p>
+          <h2 className="heading-lg mb-3">{t('testimonials.title')}</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">{t('testimonials.subtitle')}</p>
         </div>
         
         <div className="max-w-4xl mx-auto relative">
@@ -155,7 +154,7 @@ const TestimonialCarousel = () => {
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-primary-500 w-6' : 'bg-gray-700 hover:bg-gray-600'}`}
-                aria-label={`Ir al testimonio ${index + 1}`}
+                aria-label={t('testimonials.goToSlide_ariaLabel', { index: index + 1 })}
               />
             ))}
           </div>

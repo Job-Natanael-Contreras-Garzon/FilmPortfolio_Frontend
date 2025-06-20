@@ -1,4 +1,5 @@
-import  { useEffect, useRef, useState, useContext } from 'react'
+import  { useEffect, useRef, useState, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Hero from '../components/hero/Hero'
 import VideoGallery from '../components/gallery/VideoGallery'
@@ -12,6 +13,7 @@ import { ThemeContext } from '../App'
 import './HomePage.css';
 
 const HomePage = () => {
+  const { t } = useTranslation();
   // Referencias a las secciones para animación
   const sectionRefs = useRef([])
   const galleryRef = useRef(null)
@@ -118,7 +120,7 @@ const HomePage = () => {
           <div className="container-custom">
             <div className="floating-component p-8">
               <h2 className="text-3xl font-bold mb-10 text-center">
-                <span className="text-gradient" data-text="Nuestros Trabajos">Nuestros Trabajos</span>
+                <span className="text-gradient" data-text={t('home.ourWork')}>{t('home.ourWork')}</span>
               </h2>
               <VideoGallery />
             </div>
@@ -134,7 +136,7 @@ const HomePage = () => {
           <div className="container-custom">
             <div className="floating-component p-8">
               <h2 className="text-3xl font-bold mb-10 text-center">
-                <span className="text-gradient" data-text="Servicios">Servicios</span>
+                <span className="text-gradient" data-text={t('home.services')}>{t('home.services')}</span>
               </h2>
               <ServiceSection />
             </div>
@@ -150,7 +152,7 @@ const HomePage = () => {
           <div className="container-custom">
             <div className="floating-component p-8">
               <h2 className="text-3xl font-bold mb-10 text-center">
-                <span className="text-gradient" data-text="Lo Que Dicen Nuestros Clientes">Lo Que Dicen Nuestros Clientes</span>
+                <span className="text-gradient" data-text={t('home.whatOurClientsSay')}>{t('home.whatOurClientsSay')}</span>
               </h2>
               <TestimonialCarousel />
             </div>
@@ -166,7 +168,7 @@ const HomePage = () => {
           <div className="container-custom">
             <div className="floating-component p-8">
               <h2 className="text-3xl font-bold mb-10 text-center">
-                <span className="text-gradient" data-text="Nuestro Alcance">Nuestro Alcance</span>
+                <span className="text-gradient" data-text={t('home.ourReach')}>{t('home.ourReach')}</span>
               </h2>
               <SocialCounters />
             </div>
@@ -182,7 +184,7 @@ const HomePage = () => {
           <div className="container-custom">
             <div className="floating-component p-8">
               <h2 className="text-3xl font-bold mb-10 text-center">
-                <span className="text-gradient" data-text="Sobre Nosotros">Sobre Nosotros</span>
+                <span className="text-gradient" data-text={t('home.aboutUs')}>{t('home.aboutUs')}</span>
               </h2>
               <AboutUs />
             </div>
@@ -198,7 +200,7 @@ const HomePage = () => {
           <div className="container-custom">
             <div className="floating-component p-8">
               <h2 className="text-3xl font-bold mb-10 text-center">
-                <span className="text-gradient" data-text="Contacto">Contacto</span>
+                <span className="text-gradient" data-text={t('home.contact')}>{t('home.contact')}</span>
               </h2>
               <ContactSection />
             </div>

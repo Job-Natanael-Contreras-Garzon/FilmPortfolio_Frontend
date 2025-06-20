@@ -1,0 +1,299 @@
+{
+  "header": {
+    "home": "Inicio",
+    "portfolio": "Portafolio",
+    "videos": "Videos",
+    "services": "Servicios",
+    "testimonials": "Testimonios",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "quoteProject": "Cotizar Proyecto",
+    "themeToLight": "Cambiar a modo claro",
+    "themeToDark": "Cambiar a modo oscuro",
+    "closeMenu": "Cerrar menú",
+    "openMenu": "Abrir menú"
+  },
+  "app": {
+    "title": "BrandingBro",
+    "description": "Portfolio audiovisual con trabajos de alta calidad en video",
+    "keywords": "video, producción, audiovisual, portfolio, cine, edición"
+  },
+  "home": {
+    "ourWork": "Nuestros Trabajos",
+    "services": "Servicios",
+    "whatOurClientsSay": "Lo Que Dicen Nuestros Clientes",
+    "ourReach": "Nuestro Alcance",
+    "aboutUs": "Sobre Nosotros",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "project1_title": "Noche de Bodas Mágica",
+    "project1_subtitle": "Capturando momentos inolvidables bajo las estrellas.",
+    "project1_category": "Bodas",
+    "project2_title": "Colaboración Creativa en la Oficina",
+    "project2_subtitle": "El proceso detrás de una campaña exitosa.",
+    "project2_category": "Corporativo",
+    "project3_title": "La Magia del Cine Independiente",
+    "project3_subtitle": "Explorando nuevas narrativas visuales.",
+    "project3_category": "Cine",
+    "subtitle": "Creamos experiencias audiovisuales que cuentan historias, inspiran emociones y construyen marcas.",
+    "cta_collaborate": "Colaboremos Juntos",
+    "cta_view_projects": "Ver Proyectos",
+    "whatsapp_message": "¡Hola! Estoy interesado en sus servicios de producción audiovisual."
+  },
+  "videoGallery": {
+    "videos": {
+      "video1_title": "Boda de Julia y Marco",
+      "video1_description": "Hermosa boda en la playa con decoración elegante y momento emotivos",
+      "video2_title": "Comercial Nuevo Producto",
+      "video2_description": "Anuncio de lanzamiento para producto tecnológico innovador",
+      "video3_title": "Documental: Vida Salvaje",
+      "video3_description": "Exploración de ecosistemas naturales y vida animal en su hábitat",
+      "video4_title": "Cortometraje: Conexiones",
+      "video4_description": "Historia sobre las conexiones humanas en la era digital",
+      "video5_title": "Evento Corporativo",
+      "video5_description": "Cobertura profesional de evento corporativo con múltiples cámaras",
+      "video6_title": "Videoclip Musical",
+      "video6_description": "Producción audiovisual para artista musical con efectos especiales"
+    },
+    "categories": {
+      "all": "Todos",
+      "highlight": "Destacados",
+      "commercial": "Comerciales",
+      "documentary": "Documentales",
+      "shortfilm": "Cortometrajes",
+      "event": "Eventos",
+      "musicvideo": "Videoclips"
+    },
+    "noVideosFound": "No se encontraron videos en esta categoría."
+  },
+  "services": {
+    "videography_title": "Videografía",
+    "videography_description": "Capturamos tu visión con filmación en 4K/8K usando equipos de última generación para lograr la estética visual perfecta.",
+    "editing_title": "Edición Profesional",
+    "editing_description": "Editamos con precisión para darle ritmo, coherencia y emoción a tu historia. Color grading profesional incluido.",
+    "motion_graphics_title": "Motion Graphics",
+    "motion_graphics_description": "Elementos gráficos y animaciones que potencian tu mensaje y dan identidad única a tus videos.",
+    "audio_production_title": "Producción de Audio",
+    "audio_production_description": "Grabación de voz, selección musical y mezcla de sonido profesional para complementar lo visual.",
+    "creative_direction_title": "Dirección Creativa",
+    "creative_direction_description": "Desarrollo de conceptos, guiones y dirección en set para asegurar que tu visión cobre vida.",
+    "digital_content_title": "Contenido Digital",
+    "digital_content_description": "Estrategia y producción de contenido optimizado para redes sociales y plataformas digitales."
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros clientes",
+    "subtitle": "Testimonios de clientes que han confiado en nosotros para sus proyectos audiovisuales.",
+    "testimonial1_name": "Miguel Ángel Rodríguez",
+    "testimonial1_role": "Director de Marketing",
+    "testimonial1_company": "Global Brands Inc.",
+    "testimonial1_text": "El nivel de calidad y profesionalismo en cada proyecto es excepcional. Han superado nuestras expectativas en cada campaña que hemos realizado juntos.",
+    "testimonial2_name": "Laura Mendoza",
+    "testimonial2_role": "Productora Ejecutiva",
+    "testimonial2_company": "Creative Films",
+    "testimonial2_text": "La capacidad para transformar nuestra visión en una narrativa visual impactante ha sido clave para el éxito de nuestros proyectos colaborativos.",
+    "testimonial3_name": "Carlos Vega",
+    "testimonial3_role": "CEO",
+    "testimonial3_company": "Innovate Studios",
+    "testimonial3_text": "Trabajar con este equipo ha sido una experiencia transformadora. Su atención al detalle y compromiso con la excelencia los distingue en la industria.",
+    "goToSlide_ariaLabel": "Ir al testimonio {{index}}"
+  },
+  "socialCounters": {
+    "subscribers": "Suscriptores",
+    "followers": "Seguidores",
+    "label_on_platform": "{{label}} en {{platform}}"
+  },
+  "aboutUs": {
+    "title": "Sobre Nosotros",
+    "paragraph1": "Somos un equipo de creadores audiovisuales apasionados por contar historias que conectan. Fundados en 2014, hemos producido contenido para marcas nacionales e internacionales, siempre con un enfoque cinematográfico y narrativo.",
+    "paragraph2": "Nuestra misión es convertir tu visión en una experiencia visual impactante que resuene con tu audiencia. Ya sea un comercial, documental o contenido para redes sociales, aportamos la misma pasión y calidad a cada proyecto.",
+    "experience_badge": "10+ Años de Experiencia",
+    "cta_button": "Trabajemos Juntos",
+    "features": [
+      "Equipo especializado en cinematografía digital",
+      "Más de 10 años de experiencia en producción audiovisual",
+      "Uso de tecnología 8K y drones de última generación",
+      "Enfoque narrativo en cada proyecto",
+      "Postproducción avanzada con color grading profesional",
+      "Entregas en tiempo récord sin sacrificar calidad"
+    ]
+  },
+  "contact": {
+    "sectionTitle": "Ponte en Contacto",
+    "sectionSubtitle": "¿Tienes un proyecto en mente? Nos encantaría escuchar tus ideas y convertirlas en realidad. Completa el formulario o contáctanos directamente a través de WhatsApp o nuestras redes sociales.",
+    "whatsappButton": "Contactar por WhatsApp",
+    "ideaGeneratorButton": "Generador de Ideas con IA",
+    "followUs": "Síguenos en redes",
+    "businessHoursTitle": "Horario de Atención",
+    "businessHours_weekdays": "Lunes a Viernes: 9:00 AM - 6:00 PM",
+    "businessHours_saturdays": "Sábados: 10:00 AM - 2:00 PM",
+    "formTitle": "Solicita una Cotización",
+    "formSuccessMessage": "Tu mensaje ha sido enviado exitosamente. Nos pondremos en contacto contigo a la brevedad.",
+    "formErrorMessage": "Hubo un error al enviar tu mensaje. Por favor, intenta nuevamente o contáctanos directamente.",
+    "formLabels": {
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "projectType": "Tipo de proyecto",
+      "message": "Mensaje"
+    },
+    "formPlaceholders": {
+      "name": "Tu nombre",
+      "email": "tu@email.com",
+      "phone": "+123 456 7890",
+      "message": "Cuéntanos sobre tu proyecto..."
+    },
+    "formValidation": {
+      "name_required": "Por favor ingresa tu nombre",
+      "name_minLength": "El nombre debe tener al menos 2 caracteres",
+      "email_required": "Por favor ingresa tu correo electrónico",
+      "email_pattern": "Dirección de correo electrónico inválida",
+      "phone_pattern": "Número de teléfono inválido",
+      "projectType_required": "Por favor selecciona un tipo de proyecto",
+      "message_required": "Por favor ingresa un mensaje",
+      "message_minLength": "El mensaje debe tener al menos 10 caracteres"
+    },
+    "projectTypes": {
+      "select": "Selecciona una opción",
+      "commercial": "Comercial / Publicidad",
+      "event": "Evento (boda, corporativo, etc.)",
+      "music": "Videoclip musical",
+      "documentary": "Documental",
+      "shortfilm": "Cortometraje",
+      "socialmedia": "Contenido para redes sociales",
+      "other": "Otro"
+    },
+    "submitButton": {
+      "default": "Enviar Mensaje",
+      "submitting": "Enviando..."
+    },
+    "ideaModal": {
+      "title": "Generador de Ideas con IA",
+      "subtitle": "Describe tu negocio o proyecto para obtener ideas de contenido.",
+      "placeholder": "Ej: Una cafetería que también vende libros",
+      "button_default": "Generar Ideas",
+      "button_loading": "Generando...",
+      "errorMessage": "Lo sentimos, no pudimos generar ideas en este momento."
+    }
+  },
+  "portfolio": {
+    "title": "Nuestro Portafolio",
+    "filters": [
+      { "key": "all", "label": "Todo el Trabajo" },
+      { "key": "branding", "label": "Identidad de Marca" },
+      { "key": "digital", "label": "Experiencia Digital" },
+      { "key": "packaging", "label": "Diseño de Packaging" },
+      { "key": "identity", "label": "Identidad Visual" }
+    ],
+    "projects": [
+      {
+        "id": "1",
+        "title": "TechFlow",
+        "subtitle": "Plataforma de Innovación Digital",
+        "category": "branding",
+        "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop&crop=center",
+        "description": "Una identidad de marca integral para una startup tecnológica de vanguardia centrada en la transformación digital.",
+        "challenge": "TechFlow necesitaba establecer credibilidad en un mercado tecnológico saturado, transmitiendo innovación y fiabilidad.",
+        "solution": "Creamos un logotipo moderno y geométrico con tipografía dinámica y una paleta de colores sofisticada que refleja tanto innovación como confianza.",
+        "results": [
+          "Aumento del 40% en el reconocimiento de marca",
+          "Mejora del 60% en la generación de leads",
+          "Ronda de financiación Serie A completada con éxito"
+        ],
+        "tags": ["Logo Design", "Brand Strategy", "Visual Identity"],
+        "year": "2024",
+        "client": "TechFlow Inc."
+      },
+      {
+        "id": "2",
+        "title": "Eco Essence",
+        "subtitle": "Marca de Belleza Sostenible",
+        "category": "packaging",
+        "image": "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=600&fit=crop&crop=center",
+        "description": "Diseño de packaging sostenible para una marca de belleza ecológica comprometida con la responsabilidad medioambiental.",
+        "challenge": "Crear un packaging premium que refleje lujo manteniendo los principios ecológicos y la rentabilidad.",
+        "solution": "Desarrollamos un packaging minimalista con materiales reciclados, tipografía elegante y esquemas de color terrosos.",
+        "results": [
+          "Reducción del 25% en los costos de packaging",
+          "Mejora del 80% en la satisfacción del cliente",
+          "Premio ganado por packaging sostenible"
+        ],
+        "tags": ["Sustainable Design", "Packaging", "Beauty"],
+        "year": "2024",
+        "client": "Eco Essence"
+      },
+      {
+        "id": "3",
+        "title": "Urban Eats",
+        "subtitle": "Plataforma de Entrega de Comida",
+        "category": "digital",
+        "image": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&h=600&fit=crop&crop=center",
+        "description": "Experiencia de marca digital completa para una revolucionaria plataforma de entrega de comida que conecta restaurantes locales.",
+        "challenge": "Destacar en el competitivo mercado de entrega de comida apoyando a los negocios locales y la conexión comunitaria.",
+        "solution": "Creamos una marca vibrante y centrada en la comunidad con un diseño de aplicación intuitivo y una estrategia de mensajería que prioriza lo local.",
+        "results": [
+          "Aumento del 150% en las descargas de la aplicación",
+          "Tasa de retención de clientes del 90%",
+          "Expansión a 5 nuevas ciudades"
+        ],
+        "tags": ["App Design", "UX/UI", "Food Tech"],
+        "year": "2023",
+        "client": "Urban Eats"
+      },
+      {
+        "id": "4",
+        "title": "Artisan Coffee Co.",
+        "subtitle": "Tostadores de Café Artesanal",
+        "category": "identity",
+        "image": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=600&fit=crop&crop=center",
+        "description": "Identidad de marca auténtica para tostadores de café artesanal que celebran la artesanía tradicional y la calidad.",
+        "challenge": "Diferenciarse de las marcas de café de mercado masivo honrando la herencia tradicional del tostado.",
+        "solution": "Desarrollamos una identidad visual artesanal con tipografía personalizada y un enfoque de narración auténtico.",
+        "results": [
+          "Aumento del 200% en las ventas en línea",
+          "Destacado en importantes publicaciones de café",
+          "Apertura de 3 nuevas ubicaciones"
+        ],
+        "tags": ["Logo Design", "Typography", "Craft Branding"],
+        "year": "2023",
+        "client": "Artisan Coffee Co."
+      },
+      {
+        "id": "5",
+        "title": "MindSpace",
+        "subtitle": "Plataforma de Bienestar Mental",
+        "category": "digital",
+        "image": "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&h=600&fit=crop&crop=center",
+        "description": "Diseño de experiencia digital relajante para una plataforma de bienestar mental centrada en la accesibilidad y la empatía.",
+        "challenge": "Crear un espacio digital seguro y acogedor que reduzca la ansiedad y proporcione herramientas de bienestar eficaces.",
+        "solution": "Diseñado con colores suaves, navegación intuitiva e interacciones de usuario conscientes que priorizan el confort mental.",
+        "results": [
+          "Mejora del 70% en la participación del usuario",
+          "95% de comentarios positivos de los usuarios",
+          "Asociación con importantes proveedores de atención médica"
+        ],
+        "tags": ["Health Tech", "UX Design", "Accessibility"],
+        "year": "2024",
+        "client": "MindSpace"
+      },
+      {
+        "id": "6",
+        "title": "Solar Dynamics",
+        "subtitle": "Soluciones de Energía Renovable",
+        "category": "branding",
+        "image": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop&crop=center",
+        "description": "Identidad de marca progresista para una empresa de energía renovable que lidera la transición hacia la energía sostenible.",
+        "challenge": "Comunicar innovación y fiabilidad en el sector de las energías renovables en rápida evolución.",
+        "solution": "Creamos un sistema visual dinámico que representa el flujo de energía con elementos de diseño audaces y vanguardistas.",
+        "results": [
+          "Aseguró $50M en nuevos contratos",
+          "Aumento del 300% en la conciencia de marca",
+          "Reconocimiento de liderazgo en la industria"
+        ],
+        "tags": ["Energy", "Sustainability", "B2B Branding"],
+        "year": "2023",
+        "client": "Solar Dynamics"
+      }
+    ]
+  }
+}
