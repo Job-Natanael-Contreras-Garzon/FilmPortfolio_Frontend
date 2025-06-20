@@ -44,7 +44,7 @@ const ProjectShowcase = () => {
   }, []);
 
   const current = projects[currentProject];
-  const [projectInfoRef, projectInfoInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [projectInfoRef, projectInfoInView] = useInView({ threshold: 0.1, triggerOnce: false });
 
   return (
     <div className="relative w-full h-full overflow-hidden project-showcase-container">
@@ -96,7 +96,7 @@ const ProjectShowcase = () => {
 };
 
 const WhatsAppButton = ({ phoneNumber, message }) => {
-  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true, delay: 2000 }); // Delay para la animación de entrada
+  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false, delay: 2000 }); // Delay para la animación de entrada
 
   return (
     <div 
@@ -228,10 +228,10 @@ const Hero = () => {
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500">
-              Farid Dieck
+              Branding
             </span>
             <span className="block text-gray-200 mt-1 md:mt-2">
-              Narrativas que Inspiran
+              Brothers
             </span>
           </h1>
         </div>
@@ -257,7 +257,7 @@ const Hero = () => {
             Colaboremos
           </a>
           <a
-            href="#portfolio"
+            href="/portfolio"
             className="btn btn-secondary btn-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
           >
             Ver Proyectos
@@ -273,7 +273,7 @@ const Hero = () => {
         <FaChevronDown className="text-3xl text-white animate-bounce" />
       </div>
       
-      <WhatsAppButton phoneNumber="+528112345678" message="Hola Farid, me gustaría hablar sobre un proyecto." />
+      <WhatsAppButton phoneNumber="+59178504107" message="Hola brandingBrothers, me gustaría hablar sobre un proyecto." />
     </section>
   );
 };

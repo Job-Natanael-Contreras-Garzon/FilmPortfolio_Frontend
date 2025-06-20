@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer'; // Importar useInView
 import { FaWhatsapp } from 'react-icons/fa';
 import './WhatsAppButton.css';
-
-const WhatsAppButton = ({ phoneNumber = '123456789', message = 'Hola, me interesa conocer más sobre tus servicios de producción audiovisual.' }) => {
+//https://api.whatsapp.com/send?phone=59178504107
+const WhatsAppButton = ({ phoneNumber = '59178504107', message = 'Hola, me interesa conocer más sobre tus servicios de producción audiovisual.' }) => {
   const [isHovered, setIsHovered] = useState(false);
   const buttonRef = useRef(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
@@ -11,7 +11,7 @@ const WhatsAppButton = ({ phoneNumber = '123456789', message = 'Hola, me interes
 
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true,
+    triggerOnce: false,
     delay: 500 // Pequeño delay para asegurar que se vea la animación
   });
 

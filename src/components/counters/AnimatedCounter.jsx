@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const AnimatedCounter = ({ value, duration = 2000 }) => {
   const [count, setCount] = useState(0)
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1
   })
   

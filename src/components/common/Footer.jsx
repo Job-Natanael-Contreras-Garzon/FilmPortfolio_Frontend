@@ -29,9 +29,9 @@ const Footer = () => {
   
   // Social media links
   const socialLinks = [
-    { name: 'Instagram', icon: <FaInstagram />, href: 'https://instagram.com/' },
-    { name: 'YouTube', icon: <FaYoutube />, href: 'https://youtube.com/' },
-    { name: 'TikTok', icon: <FaTiktok />, href: 'https://tiktok.com/' }
+    { name: 'Instagram', icon: <FaInstagram />, href: 'https://www.instagram.com/brandingbrothers.bo/' },
+    { name: 'YouTube', icon: <FaYoutube />, href: 'https://www.youtube.com/@brandingbrothers.bo' },
+    { name: 'TikTok', icon: <FaTiktok />, href: 'https://www.tiktok.com/@brandingbrothers.bo?is_from_webapp=1&sender_device=pc' }
   ]
   
   return (
@@ -105,10 +105,10 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800 text-center md:flex md:justify-between md:items-center">
           <p className="text-gray-500 text-sm">
-            © {currentYear} FilmPortfolio. Todos los derechos reservados.
+            © {currentYear} BrandingBrothers. Todos los derechos reservados.
           </p>
           <p className="text-gray-500 text-sm mt-2 md:mt-0">
-            Diseñado y desarrollado con pasión
+            Diseñado y desarrollado con pasión ALVsoft
           </p>
         </div>
       </div>

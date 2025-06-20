@@ -20,21 +20,21 @@ const socialNetworksData = [
     icon: <FaInstagram className="text-4xl text-pink-500 social-icon" />,
     count: 921000, // Valor real de seguidores
     label: 'Seguidores',
-    link: 'https://www.instagram.com/faridieck'
+    link: 'https://www.instagram.com/brandingbrothers.bo/'
   },
   {
     id: 3,
     platform: 'TikTok',
     icon: <FaTiktok className="text-4xl social-icon" />,
-    count: 1240000, // Valor real de seguidores
+    count: 12400, // Valor real de seguidores
     label: 'Seguidores',
-    link: 'https://www.tiktok.com/@faridieck'
+    link: 'https://www.tiktok.com/@brandingbrothers.bo?is_from_webapp=1&sender_device=pc'
   },
   {
     id: 4,
     platform: 'Facebook',
     icon: <FaFacebookF className="text-4xl text-blue-500 social-icon" />,
-    count: 473000, // Valor real de seguidores
+    count: 47300, // Valor real de seguidores
     label: 'Seguidores',
     link: 'https://www.facebook.com/faridieck'
   },
@@ -42,7 +42,7 @@ const socialNetworksData = [
     id: 5,
     platform: 'Twitter',
     icon: <FaTwitter className="text-4xl text-blue-400 social-icon" />,
-    count: 315000, // Valor real de seguidores
+    count: 31500, // Valor real de seguidores
     label: 'Seguidores',
     link: 'https://x.com/faridieck'
   }

@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa'
 import './Header.css'
@@ -33,7 +34,8 @@ const Header = () => {
   
   // Navigation links
   const navLinks = [
-    { name: 'Inicio', href: '#hero' },
+    { name: 'Inicio', href: '/' },
+    { name: 'Portafolio', href: '/portfolio' },
     { name: 'Videos', href: '#videos' },
     { name: 'Servicios', href: '#servicios' },
     { name: 'Testimonios', href: '#testimonios' },
@@ -53,8 +55,8 @@ const Header = () => {
         {/* Logo */}
         <a href="#hero" className="relative z-50">
           <h1 className="font-heading font-bold text-2xl">
-            <span className="text-gradient" data-text="Film">Film</span>
-            <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>Portfolio</span>
+            <span className="text-gradient" data-text="Film">BranDing</span>
+            <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>BroThers</span>
           </h1>
         </a>
         
@@ -63,12 +65,12 @@ const Header = () => {
           <ul className="flex items-center space-x-8">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a 
-                  href={link.href}
+                <Link 
+                  to={link.href}
                   className={`${theme === 'dark' ? 'text-white' : 'text-gray-900'} hover:text-primary-400 transition-colors`}
                 >
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
             <li>
@@ -122,13 +124,13 @@ const Header = () => {
                     className={`mobile-menu-item ${isMobileMenuOpen ? 'mobile-menu-item-visible' : ''}`}
                     style={{ transitionDelay: `${index * 0.1}s` }}
                   >
-                    <a 
-                      href={link.href}
+                    <Link 
+                      to={link.href}
                       className={`text-2xl ${theme === 'dark' ? 'text-white' : 'text-gray-800'} hover:text-primary-400 transition-colors`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
                 

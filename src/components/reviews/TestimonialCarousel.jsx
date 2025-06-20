@@ -48,7 +48,7 @@ const testimonialsData = [
 const TestimonialCarousel = () => {
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true
+    triggerOnce: false
   });
   const [isVisible, setIsVisible] = useState(false);
   

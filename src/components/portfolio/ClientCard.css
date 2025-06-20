@@ -1,0 +1,46 @@
+.client-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.client-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.client-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.client-card:hover .client-overlay {
+  opacity: 1;
+}
+
+.client-description {
+  padding: 1rem;
+  text-align: center;
+}
+
+.view-more-button {
+  background-color: #4CAF50; /* Example color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

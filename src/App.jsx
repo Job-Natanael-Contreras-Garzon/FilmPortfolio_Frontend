@@ -1,7 +1,9 @@
 import { useState, useEffect, createContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 
-import HomePage from './pages/HomePage'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import PortfolioPage from './pages/PortfolioPage';
 import CustomCursor from './components/common/CustomCursor'
 import Header from './components/common/Header'
 import Footer from './components/common/Footer'
@@ -135,7 +137,12 @@ function App() {
           <CustomCursor position={cursorPosition} isHovering={isHovering} theme={theme} />
           <Header theme={theme} toggleTheme={toggleTheme} />
           <main className="scroll-smooth">
-            <HomePage />
+            <Router>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/portfolio" element={<PortfolioPage />} />
+              </Routes>
+            </Router>
           </main>
           <Footer />
         </div>

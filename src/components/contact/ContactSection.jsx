@@ -8,7 +8,7 @@ const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true
+    triggerOnce: false
   });
   
   useEffect(() => {
@@ -35,7 +35,7 @@ const ContactSection = () => {
         
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/1234567890" // Replace with your actual WhatsApp number
+          href="https://wa.me/59178504107" // Replace with your actual WhatsApp number
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-full mb-6 transition-colors inline-block"
@@ -49,7 +49,7 @@ const ContactSection = () => {
           <h4 className="font-medium text-white mb-4">Síguenos en redes</h4>
           <div className="flex space-x-4">
             <a
-              href="https://instagram.com/" // Replace with your actual Instagram
+              href="https://www.instagram.com/brandingbrothers.bo/" // Replace with your actual Instagram
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-pink-500 text-2xl transition-colors"
@@ -67,7 +67,7 @@ const ContactSection = () => {
               <FaYoutube />
             </a>
             <a
-              href="https://tiktok.com/" // Replace with your actual TikTok
+              href="https://www.tiktok.com/@brandingbrothers.bo?is_from_webapp=1&sender_device=pc" // Replace with your actual TikTok
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white text-2xl transition-colors"

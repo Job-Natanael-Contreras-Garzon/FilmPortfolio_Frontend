@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const ScrollSection = ({ children, className, threshold = 0.1}) => {
   const [ref, inView] = useInView({
     threshold: threshold,
-    triggerOnce: true
+    triggerOnce: false
   });
   const [isVisible, setIsVisible] = useState(false);
 
